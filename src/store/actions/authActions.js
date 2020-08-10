@@ -1,6 +1,7 @@
 import types from '../actionsTypes';
 
 export const login = data =>{
+  console.log(data);
   return{
     type: types.LOGIN,
     payload: data

@@ -12,7 +12,7 @@ import {COLORS} from '../../utils/constatns';
 import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
 import FormLocker from '../../components/form-locker/FormLocker';
 
-const LoginPage = ({isLoading}) => {
+const LoginPage = ({isLoading, login}) => {
 
     const [{email, password}, setState] = useState({
         email: '',
@@ -25,9 +25,7 @@ const LoginPage = ({isLoading}) => {
     };
 
     const handleOnClick = () => {
-        console.log('email: ', email);
-        console.log('password: ', password);
-        // getNewPassword({confirmationCode, newPassword, username});
+        login({email, password})
     };
 
     if (isLoading) return <Spinner/>;
@@ -42,11 +40,11 @@ const LoginPage = ({isLoading}) => {
                         .required('Required'),
                     password: Yup.string()
                         .required('No password provided.')
-                        // .min(8, 'Password should be 8 chars minimum.')
-                        // .matches(
-                        //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                        //     'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
-                        // )
+                        .min(8, 'Password should be 8 chars minimum.')
+                        .matches(
+                            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                            'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
+                        )
                 })}
             >
                 {props => {

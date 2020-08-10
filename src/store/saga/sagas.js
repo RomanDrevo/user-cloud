@@ -1,15 +1,42 @@
 import { call, put } from 'redux-saga/effects';
+import {setLoading} from '../actions/uIStateActions';
+import {loginApi} from '../../api';
 
-import {fetchItemsApi} from '../../api';
-
-export function* fetchItemsSaga() {
+export function* loginSaga(data) {
   try {
-    const result = yield call(fetchItemsApi);
+    yield put(setLoading(true));
+    // yield put(killSvg());
+    const response = yield call(loginApi, data.payload);
 
-    console.log(result);
+    console.log(response);
 
-    // yield put(setItems(data));
+    // else if (response.data.code === 401) {
+    //   yield put(
+    //       setAlert({
+    //         status: ALERT_STATUSES.error,
+    //         title: response.data.status,
+    //         message: response.data.message
+    //       })
+    //   );
+    //   yield put(toggleErrorWindowIsOpen());
+    // }
+
+    yield put(setLoading(false));
+
   } catch (error) {
-    // yield put({ type: types.ACTION_FAILED, payload: error.message });
+    console.log(error);
+    // yield put(setLoading(false));
+    //
+    // let errorMessage = error.toString();
+    // if (error?.response?.data?.message) errorMessage = error.response.data.message;
+    // else if (error?.response?.data?.error) errorMessage = error.response.data.error;
+    //
+    // yield put(
+    //     setAlert({
+    //       status: ALERT_STATUSES.error,
+    //       title: 'Error',
+    //       message: errorMessage
+    //     })
+    // );
   }
 }
