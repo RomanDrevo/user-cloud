@@ -108,7 +108,7 @@ const LoginPage = ({isLoading}) => {
                                 <div className='button-wrapper'>
                                     <button
                                         className='button'
-                                        disabled={false}
+                                        disabled={errors.email || !values.email || errors.password || !values.password}
                                         onClick={handleOnClick}
                                     >
                                         <div className='btn-txt'>Sign In</div>
