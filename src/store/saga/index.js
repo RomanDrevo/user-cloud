@@ -3,5 +3,5 @@ import types from '../actionsTypes';
 import {fetchItemsSaga} from './sagas';
 
 export function* watchSaga() {
-  yield takeEvery(types.FETCH_ITEMS, fetchItemsSaga);
+  // yield takeEvery(types.FETCH_ITEMS, fetchItemsSaga);
 }
