@@ -39,84 +39,49 @@ body {
 }
 
 
-@media screen and (max-height: 920px) {
-  .login-welcome {
-    //margin-bottom: 10px;
-    .logo-wrapper {
-      svg {
-        width: 44px;
-        height: 67px;
-      }
-    }
+//@media screen and (max-height: 920px) {
+//  .login-welcome {
+//    //margin-bottom: 10px;
+//    .logo-wrapper {
+//      svg {
+//        width: 44px;
+//        height: 67px;
+//      }
+//    }
+//
+//    .welcome-block_primary {
+//      font-size: 29px;
+//    }
+//  }
+//  #circleSvg {
+//    width: 351px !important;
+//  }
+//  .forgot-password-wrapper {
+//    bottom: -150px !important;
+//  }
+//
+//  @keyframes floatBubble {
+//    from {
+//      opacity: 1;
+//      transform: none;
+//    }
+//    to {
+//      opacity: 1;
+//      transform: translate3d(0, -274px, 0);
+//    }
+//  }
+//  .ant-form {
+//    width: 280px;
+//
+//    .label-float {
+//      top: -15px !important;
+//    }
+//  }
+//  .button-wrapper {
+//    bottom: 60px !important;
+//  }
+//}
 
-    .welcome-block_primary {
-      font-size: 29px;
-    }
-  }
-  #circleSvg {
-    width: 351px !important;
-  }
-  .forgot-password-wrapper {
-    bottom: -150px !important;
-  }
-
-  @keyframes floatBubble {
-    from {
-      opacity: 1;
-      transform: none;
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0, -274px, 0);
-      //transform: translate3d(0px, -50%, 0);
-    }
-  }
-  .ant-form {
-    width: 280px;
-
-    .label-float {
-      top: -15px !important;
-    }
-  }
-  .button-wrapper {
-    bottom: 60px !important;
-  }
-}
-
-@media screen and (max-height: 720px) {
-  .login-welcome {
-    margin-bottom: 10px;
-
-    .welcome-block_primary {
-      font-size: 24px;
-    }
-
-    .logo-wrapper {
-      svg {
-        width: 36px;
-        height: 55px;
-      }
-    }
-  }
-  #circleSvg {
-    width: 328px !important;
-  }
-  .ant-form {
-    width: 255px;
-  }
-  .ant-btn {
-    width: 156px;
-    min-width: 156px;
-    min-height: 35px !important;
-    height: 35px !important;
-  }
-  .forgot-password-wrapper {
-    bottom: -80px !important;
-  }
-  .button-wrapper {
-    transform: translate3d(-50%, 128px, 0) !important;
-  }
-}
 
 
 //.login-form-username, #circleSvg {
@@ -160,4 +125,34 @@ body {
 
 .site-layout .site-layout-background {
   background: #fff;
+}
+
+
+
+
+// form styles
+.forgot-password-email {
+  margin-top: 64px;
+
+  .ant-form-item {
+    min-height: 70px;
+  }
+
+  .label-float {
+    opacity: .65;
+  }
+
+  .input-feedback {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    line-height: normal;
+    color: $white;
+    opacity: .65;
+    position: relative;
+    bottom: -2px;
+    letter-spacing: 1px;
+    min-height: 36px;
+    text-align: left;
+  }
 }

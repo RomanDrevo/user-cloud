@@ -14,10 +14,9 @@ import FormLocker from '../../components/form-locker/FormLocker';
 
 const LoginPage = ({isLoading}) => {
 
-    const [{confirmationCode, newPassword, username}, setState] = useState({
-        confirmationCode: '',
-        newPassword: '',
-        username: ''
+    const [{email, password}, setState] = useState({
+        email: '',
+        password: '',
     });
 
     const handleOnChange = e => {
@@ -26,101 +25,102 @@ const LoginPage = ({isLoading}) => {
     };
 
     const handleOnClick = () => {
-        console.log('here');
-        console.log('confirmationCode: ', confirmationCode);
+        console.log('email: ', email);
+        console.log('password: ', password);
         // getNewPassword({confirmationCode, newPassword, username});
     };
 
     if (isLoading) return <Spinner/>;
 
     return (
-        <Formik
-            initialValues={{confirmationCode: '', newPassword: '', username:''}}
-            validationSchema={Yup.object().shape({
-                confirmationCode: Yup.number().required('Required').typeError('Code must be a number'),
-                newPassword: Yup.string()
-                    .required('No password provided.')
-                    .min(8, 'Password should be 8 chars minimum.')
-                    .matches(
-                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                        'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
-                    ),
-                username: Yup.string()
-                    .email('Please enter a valid email address')
-                    .required('Required')
-            })}
-        >
-            {props => {
-                const {
-                    values,
-                    touched,
-                    errors,
-                    dirty,
-                    handleChange,
-                    handleBlur
-                } = props;
+        <div className={style['login-page-wrapper']}>
+            <Formik
+                initialValues={{email: '', password: ''}}
+                validationSchema={Yup.object().shape({
+                    password: Yup.string()
+                        .required('No password provided.')
+                        .min(8, 'Password should be 8 chars minimum.')
+                        .matches(
+                            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                            'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
+                        ),
+                    email: Yup.string()
+                        .email('Please enter a valid email address')
+                        .required('Required')
+                })}
+            >
+                {props => {
+                    const {
+                        values,
+                        touched,
+                        errors,
+                        dirty,
+                        handleChange,
+                        handleBlur
+                    } = props;
 
-                const customHandleChange = (e) => {
-                    handleChange(e);
-                    handleOnChange(e);
-                };
+                    const customHandleChange = (e) => {
+                        handleChange(e);
+                        handleOnChange(e);
+                    };
 
-                if(isLoading) return  <Spinner/>;
+                    if (isLoading) return <Spinner/>;
 
-                return (
-                    <div className='flex flex-column items-center'>
-                        <Form name='forgot-password-email' className='forgot-password-email'>
-                            <Form.Item>
-                                <FloatLabel label="Username" name="username" value={values.username}>
-                                    <Input
-                                        id='username'
-                                        onChange={customHandleChange}
-                                        name="username"
-                                        value={values.username}
-                                        onBlur={handleBlur}
-                                        suffix={errors.username ? <FormErrorLocker /> :
-                                            <FormLocker color={!dirty ? COLORS.white : COLORS.green}
-                                                        opacity={!dirty ? 0.65 : 1}/>}
-                                    />
-                                </FloatLabel>
-                                {errors.username && touched.username && (
-                                    <div className="input-feedback">{errors.username}</div>
-                                )}
-                            </Form.Item>
+                    return (
+                        <div className='flex flex-column items-center'>
+                            <Form name='forgot-password-email' className='forgot-password-email'>
+                                <Form.Item>
+                                    <FloatLabel label="Email" name="email" value={values.email}>
+                                        <Input
+                                            id='email'
+                                            onChange={customHandleChange}
+                                            name="email"
+                                            value={values.email}
+                                            onBlur={handleBlur}
+                                            suffix={errors.email ? <FormErrorLocker/> :
+                                                <FormLocker color={!dirty ? COLORS.white : COLORS.green}
+                                                            opacity={!dirty ? 0.65 : 1}/>}
+                                        />
+                                    </FloatLabel>
+                                    {errors.email && touched.email && (
+                                        <div className="input-feedback">{errors.email}</div>
+                                    )}
+                                </Form.Item>
 
-                            <Form.Item>
-                                <FloatLabel label="Confirmation Code" name="confirmationCode" value={values.confirmationCode}>
-                                    <Input
-                                        id='confirmationCode'
-                                        onChange={customHandleChange}
-                                        name="confirmationCode"
-                                        value={values.confirmationCode}
-                                        onBlur={handleBlur}
-                                        suffix={errors.confirmationCode ? <FormErrorLocker/> :
-                                            <FormLocker color={!dirty ? COLORS.white : COLORS.green}
-                                                  opacity={!dirty ? 0.65 : 1}/>}
-                                    />
-                                </FloatLabel>
-                                {errors.confirmationCode && touched.confirmationCode && (
-                                    <div className="input-feedback">{errors.confirmationCode}</div>
-                                )}
-                            </Form.Item>
+                                <Form.Item>
+                                    <FloatLabel label="Password" name="password" value={values.password}>
+                                        <Input
+                                            id='password'
+                                            onChange={password}
+                                            name="password"
+                                            value={values.password}
+                                            onBlur={handleBlur}
+                                            suffix={errors.password ? <FormErrorLocker/> :
+                                                <FormLocker color={!dirty ? COLORS.white : COLORS.green}
+                                                            opacity={!dirty ? 0.65 : 1}/>}
+                                        />
+                                    </FloatLabel>
+                                    {errors.password && touched.password && (
+                                        <div className="input-feedback">{errors.password}</div>
+                                    )}
+                                </Form.Item>
 
-                            <div className='button-wrapper'>
-                                <Button
-                                    className='next-button'
-                                    disabled={errors.newPassword || !values.newPassword}
-                                    onClick={handleOnClick}
-                                >
-                                    OK
-                                </Button>
-                            </div>
-                        </Form>
-                    </div>
+                                <div className='button-wrapper'>
+                                    <Button
+                                        className='next-button'
+                                        disabled={errors.newPassword || !values.newPassword}
+                                        onClick={handleOnClick}
+                                    >
+                                        OK
+                                    </Button>
+                                </div>
+                            </Form>
+                        </div>
 
-                );
-            }}
-        </Formik>
+                    );
+                }}
+            </Formik>
+        </div>
     );
 };
 
