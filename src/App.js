@@ -15,7 +15,7 @@ const App = () => {
         <PageLayout>
           <div className="main-page-content">
               <Switch>
-                   <ProtectedRoute path='/users' exact component={UsersPage}/>
+                  <ProtectedRoute path='/users' exact component={UsersPage}/>
                   <Route path='/login' exact component={LoginPage}/>
               </Switch>
           </div>

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import style from './Login.module.scss';
-import {Button, Form, Input} from 'antd';
+import {Form, Input} from 'antd';
 import Spinner from '../../components/spinner';
 import {isAuthenticated, isLoading} from '../../store/selectors';
-import {login, setIsAuthenticated} from '../../store/actions/authActions';
+import {login, loginSuccess, setIsAuthenticated} from '../../store/actions/authActions';
 import {connect} from 'react-redux';
 import FloatLabel from '../../components/floatLabel/FloatLabel';
 import {Formik} from 'formik';
@@ -11,19 +11,31 @@ import * as Yup from 'yup';
 import {COLORS} from '../../utils/constatns';
 import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
 import FormLocker from '../../components/form-locker/FormLocker';
+import {setLoading} from '../../store/actions/uIStateActions';
 
-const LoginPage = ({isLoading, login, isAuthenticated, history}) => {
+const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) => {
 
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         history.push(pathname);
-    //     } else {
-    //         const token = localStorage.getItem('token');
-    //         if (token) {
-    //             setIsAuthenticated(true);
-    //         }
-    //     }
-    // }, [isAuthenticated]);
+    useEffect(() => {
+        const redirect = async () =>{
+            setLoading(true);
+            try {
+                const token = await localStorage.getItem('token');
+                if (token) {
+                    setLoading(false);
+                    loginSuccess(true);
+                }
+            }catch (e) {
+                console.log('--er: ', e);
+            }
+
+        };
+
+        if (isAuthenticated) {
+            history.push('/users');
+        } else {
+            redirect();
+        }
+    }, [isAuthenticated]);
 
     const [{email, password}, setState] = useState({
         email: '',
@@ -141,6 +153,8 @@ function mapDispatchToProps(dispatch) {
     return {
         login: data => dispatch(login(data)),
         setIsAuthenticated: data => dispatch(setIsAuthenticated(data)),
+        loginSuccess: () => dispatch(loginSuccess()),
+        setLoading: data => dispatch(setLoading(data)),
     };
 }
 

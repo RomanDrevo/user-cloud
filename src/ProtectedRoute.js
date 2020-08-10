@@ -29,6 +29,22 @@ const ProtectedRoute = ({component: Component, isAuthenticated}, ...rest) => {
     );
 };
 
+// const ProtectedRoute = props => {
+//     const { isAuthenticated } = props;
+//
+//     console.log(isAuthenticated);
+//
+//     if (isAuthenticated){
+//         return <Redirect to="/users" />;
+//     }
+//     else if (!isAuthenticated){
+//         console.log('---redirecting to login');
+//         return <Redirect to="/login" />;
+//     }
+//
+//     return <Route {...props} />;
+// };
+
 const mapStateToProps = state => {
     return {
         isAuthenticated: isAuthenticated(state)
