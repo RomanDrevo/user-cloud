@@ -8,9 +8,6 @@ const initialState = {
   userEmail: null,
   isAuthenticated: false,
   token: '',
-  isForgotPasswordModalOpen: false,
-  isResetPasswordModalOpen: false,
-  isResetPasswordSuccessModalOpen: false,
 };
 
 const authReducer = createReducer(initialState, {
@@ -24,11 +21,11 @@ const authReducer = createReducer(initialState, {
         }
     },
 
-    [actionsTypes.SET_IS_USER_CONFIRMED]: (state, {payload}) => {
+    [actionsTypes.LOGIN_SUCCESS]: (state, {payload}) => {
         return {
             ...state,
-            ...payload
-
+            isAuthenticated: true,
+            userEmail: payload
         };
     },
 

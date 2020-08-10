@@ -80,6 +80,14 @@
       background: transparent;
       border: none;
       opacity: .6;
+      cursor: pointer;
+      &:disabled{
+        &:before{
+          opacity: .4;
+
+        }
+        cursor: not-allowed;
+      }
       .btn-txt{
         position: relative;
         top: -186px;
@@ -121,5 +129,6 @@
       top: -436px;
       right: 108px;
     }
+
   }
 }

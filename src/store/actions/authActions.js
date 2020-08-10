@@ -25,3 +25,10 @@ export const setIsAuthenticated = data => {
   };
 };
 
+export const loginSuccess = data => {
+  return{
+    type: types.LOGIN_SUCCESS,
+    payload: data
+  };
+};
+

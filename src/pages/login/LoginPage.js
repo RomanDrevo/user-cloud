@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './Login.module.scss';
 import {Button, Form, Input} from 'antd';
 import Spinner from '../../components/spinner';
@@ -12,7 +12,18 @@ import {COLORS} from '../../utils/constatns';
 import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
 import FormLocker from '../../components/form-locker/FormLocker';
 
-const LoginPage = ({isLoading, login}) => {
+const LoginPage = ({isLoading, login, isAuthenticated, history}) => {
+
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //         history.push(pathname);
+    //     } else {
+    //         const token = localStorage.getItem('token');
+    //         if (token) {
+    //             setIsAuthenticated(true);
+    //         }
+    //     }
+    // }, [isAuthenticated]);
 
     const [{email, password}, setState] = useState({
         email: '',
@@ -25,7 +36,7 @@ const LoginPage = ({isLoading, login}) => {
     };
 
     const handleOnClick = () => {
-        login({email, password})
+        login({email, password});
     };
 
     if (isLoading) return <Spinner/>;
@@ -40,11 +51,7 @@ const LoginPage = ({isLoading, login}) => {
                         .required('Required'),
                     password: Yup.string()
                         .required('No password provided.')
-                        .min(8, 'Password should be 8 chars minimum.')
-                        .matches(
-                            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                            'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
-                        )
+                        .min(3, 'Password should be 3 chars minimum.')
                 })}
             >
                 {props => {
@@ -88,6 +95,7 @@ const LoginPage = ({isLoading, login}) => {
                                 <Form.Item>
                                     <FloatLabel label="Password" name="password" value={values.password}>
                                         <Input
+                                            type='password'
                                             id='password'
                                             onChange={customHandleChange}
                                             name="password"
