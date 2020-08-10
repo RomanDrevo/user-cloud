@@ -89,7 +89,6 @@
   }
 
   .button {
-    /* outline: solid 1px green; */
     width: 150px;
     height: 48px;
     overflow: hidden;
@@ -98,11 +97,22 @@
     color: #fff;
     background: transparent;
     border: none;
+    opacity: .6;
     .btn-txt{
       position: relative;
       top: -186px;
       font-size: 14px;
       color: #202020;
+    }
+    &:hover{
+      opacity: 1;
+    }
+    &:focus{
+      border: none;
+      outline: none;
+    }
+    &:active{
+      border: none;
     }
   }
 
