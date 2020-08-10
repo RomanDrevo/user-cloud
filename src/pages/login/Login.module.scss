@@ -1,0 +1,13 @@
+@import "../../css/Colors.scss";
+
+.login-page-wrapper :global {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $black;
+  button{
+    margin: 24px auto 0;
+  }
+}
