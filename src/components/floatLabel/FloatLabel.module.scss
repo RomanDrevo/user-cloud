@@ -1,0 +1,33 @@
+@import "../../css/Colors.scss";
+
+
+.float-label-wrapper :global{
+  .float-label {
+    position: relative;
+  }
+
+  .label {
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;
+    color: $white;
+    font-style: italic;
+    opacity: 0.65;
+    letter-spacing: 1px;
+  }
+
+  .label-float {
+    top: -20px;
+    font-size: 14px;
+    color: $white;
+    font-style: italic;
+    opacity: 0.65;
+  }
+  .ant-input-suffix{
+    right: 0;
+  }
+}

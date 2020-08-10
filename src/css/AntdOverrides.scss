@@ -1,0 +1,222 @@
+@import "./Colors";
+$sideBarWidth: 197px;
+$toolBarAndHeader: 96px;
+$heightTableBody: 230px;
+$heightTableContent: 150px;
+$heightTableBodyWithTumorPanel: 278px;
+$heightTableContentWithTumorPanel: 198px;
+
+
+
+// form
+.ant-form {
+  width: 352px;
+
+  .ant-form-item-control {
+    line-height: 1;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none !important;
+  border-bottom: 1px solid $green !important;
+  -webkit-text-fill-color: $white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+.ant-input {
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+  background: transparent !important;
+  color: $white;
+  border-radius: 0 !important;
+  padding-left: 0;
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  font-size: 16px;
+
+  &:focus {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+    background: transparent !important;
+    color: $white;
+    box-shadow: none;
+  }
+
+  &:focus-within {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+    background: transparent !important;
+    color: $white;
+  }
+
+  &:visited {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+    background: transparent !important;
+    color: $white;
+  }
+
+  &:active {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+    background: transparent !important;
+    color: $white;
+  }
+
+  &:hover {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+    background: transparent !important;
+    color: $white;
+  }
+
+  caret-color: $white;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: $white;
+}
+
+
+.ant-checkbox-inner {
+  background-color: transparent;
+  border-color: $white;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  border: none;
+}
+
+// modal
+.ant-modal-wrap {
+  background: rgba(0, 0, 0, 0.3)
+}
+
+.ant-modal-content {
+  background-color: transparent;
+}
+
+.ant-modal-header {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.ant-modal-header {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.ant-modal-body {
+  display: flex;
+  justify-content: center;
+  color: $white;
+  text-align: center;
+  padding: 0;
+  margin-top: 56px;
+  font-size: 16px;
+  .ant-form-item{
+    min-height: 71px;
+    //border: 1px dashed white;
+  }
+
+
+  .forgot-password-email {
+    margin-top: 64px;
+
+    .ant-form-item {
+      margin-bottom: 40px;
+    }
+
+    .label-float {
+      opacity: .65;
+    }
+
+    .input-feedback {
+      //font-size: 14px;
+      //font-weight: normal;
+      //font-style: italic;
+      //line-height: normal;
+      //color: #fff;
+      //opacity: .65;
+      //position: relative;
+      //bottom: 34px;
+      //letter-spacing: 1px;
+      //text-align: left;
+      font-size: 12px;
+      font-weight: normal;
+      font-style: italic;
+      line-height: normal;
+      color: $white;
+      opacity: .65;
+      position: relative;
+      bottom: -2px;
+      letter-spacing: 1px;
+      //min-width: 370px;
+      min-height: 36px;
+      //border: 1px dashed red;
+      text-align: left;
+    }
+  }
+
+  .login-errors{
+    color: $white;
+    margin-top: -16px;
+    background: transparent;
+    //opacity: .65;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .error-title{
+      margin-top: 40px;
+      color: $white;
+      font-size: 36px;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .error-body{
+      line-height: 1;
+      margin-top: 40px;
+      font-size: 24px;
+      font-weight: 300;
+    }
+    .ant-btn{
+      margin-top: 40px!important;
+    }
+  }
+
+  .button-wrapper {
+    margin-top: 40px;
+  }
+}
+
+.ant-modal-body .button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ant-modal-title {
+  color: $white;
+  font-size: 36px;
+  font-weight: 300;
+  text-align: center;
+}
+
+// layout
+.ant-layout-header {
+  height: unset;
+  padding: unset;
+  line-height: 1;
+  background: #001529;
+}
+
