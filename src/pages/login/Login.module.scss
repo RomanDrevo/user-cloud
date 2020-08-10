@@ -29,18 +29,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     .ant-input {
       //box-shadow: 0 0 2px -2px #01fdae;
     }
-    .ant-input-affix-wrapper{
+
+    .ant-input-affix-wrapper {
       background: none;
       border: none;
       box-shadow: none;
-      &:focus{
+
+      &:focus {
         background: none;
         border: none;
         box-shadow: none;
       }
+
       &:focus-within {
         background: none;
         border: none;
@@ -71,186 +75,110 @@
     margin: auto;
   }
 
-  .login-field-wrapper {
+  .ant-btn {
+    /* outline: solid 1px green; */
+    display: inline-block;
+    padding: 0.5em;
+    font-size: 2em;
+    overflow: hidden;
     position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    .login-field-inner-wrapper {
-      height: 474px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      //border: 1px dashed yellow;
-      align-items: center;
+    margin: 0.5em;
+    color: #fff;
+    font-family: sans-serif;
+    text-decoration: none
+  }
 
-      .button-wrapper {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate3d(-50%, 90px, 0);
-        .terms{
-          min-width: 290px;
-          margin-bottom: 24px;
-          text-align: center;
-          font-size: 16px!important;
-          font-style: italic;
-          .terms-text{
-            cursor: pointer;
-            color: $white;
-            text-decoration: underline;
-
-            font-size: 16px;
-          }
-          .ant-checkbox-wrapper  {
-            color: $white;
-            font-size: 16px!important;
-          }
-        }
-      }
-
-      .forgot-password-wrapper {
-        color: #fff;
-        text-align: center;
-        position: absolute;
-        bottom: -200px;
-        left: 50%;
-        transform: translate3d(-50%, 20px, 0);
-        font-weight: 300;
-        min-width: 320px;
-        letter-spacing: 1px;
-        font-style: italic;
-        opacity: .65;
-
-        .forgot-password {
-          color: #fff;
-          text-decoration: underline;
-          cursor: pointer;
-          font-size: 16px;
-        }
-      }
-      .login-form-username {
-        .ant-form-item {
-          margin-bottom: 0;
-          position: absolute;
-          width: 100%;
-          bottom: 0;
-          left: 50%;
-          transform: translate3d(-50%, -237px, 0);
-        }
-      }
-      .login-form-confirmation {
-        .ant-form-item {
-          margin-bottom: 0;
-          position: absolute;
-          width: 100%;
-          bottom: 0;
-          left: 50%;
-          transform: translate3d(-50%, -237px, 0);
-        }
-      }
-      .login-form-password {
-        .ant-form-item {
-          margin-bottom: 0;
-          position: absolute;
-          width: 100%;
-          bottom: 0;
-          left: 50%;
-          transform: translate3d(-50%, -237px, 0);
-        }
-        .button-wrapper {
-          transform: translate3d(-50%, 156px, 0);
-        }
-        .back-button {
-          border: none;
-          opacity: .65;
-
-          &:hover {
-            border: none;
-            opacity: 1;
-          }
-
-          &:active {
-            border: none;
-            opacity: 1;
-            background: transparent;
-          }
-
-          &:visited {
-            border: none;
-            opacity: 1;
-            background: transparent;
-          }
-
-          &:focus {
-            border: none;
-            opacity: 1;
-            background: transparent;
-          }
-        }
-      }
+  .button {
+    /* outline: solid 1px green; */
+    width: 150px;
+    height: 48px;
+    overflow: hidden;
+    position: relative;
+    margin: 1em;
+    color: #fff;
+    background: transparent;
+    border: none;
+    .btn-txt{
+      position: relative;
+      top: -186px;
+      font-size: 14px;
+      color: #202020;
     }
   }
-  .svg-wrapper{
-    width: 478px;
-    height: 475px;
-    border: 2px dashed red;
+
+  .button::before {
+    content: '';
+    display: block;
+    background: #00FFC4 ;;
+    width: 188px;
+    height: 200px;
+    transform: rotate(45deg);
+    position: relative;
+    top: -100px;
+    right: 50px;
+  }
+
+  .button::after {
+    content: "";
+    display: block;
+    background: black;
+    width: 188px;
+    height: 200px;
+    transform: rotate(45deg);
+    position: relative;
+    top: -436px;
+    right: 108px;
   }
 
   //ant overrides
   // button
-  .ant-btn {
-    min-width: 205px;
-    font-size: 18px !important;
-    font-weight: 300 !important;
-    padding: 12px 80px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 45px;
-    color: #fff;
-    background: transparent;
-    border: 1px solid $green;
-    line-height: 1;
-
-    &:hover {
-      border: 1px solid $green;
-      color: $white;
-      background: transparent;
-    }
-
-    &:active {
-      //border: 1px solid $green;
-      color: $white;
-      background: rgba(11,171,118,0.70);
-      border: 1px solid #01FCAD;
-      box-shadow: inset 4px 4px 5px 0 rgba(61,227,160,0.33);
-    }
-
-    &:focus {
-      //background: transparent;
-      //opacity: .65;
-      //border: 1px solid $green;
-      color: $white;
-      background: rgba(11,171,118,0.70);
-      border: 1px solid #01FCAD;
-      box-shadow: inset 4px 4px 5px 0 rgba(61,227,160,0.33);
-    }
-  }
-
-  .ant-btn[disabled] {
-    background: transparent;
-    opacity: .35;
-    color: $white;
-    border: 1px solid $green;
-
-    &:hover {
-      border: 1px solid $green;
-      color: $white;
-      background: transparent;
-      opacity: .35;
-    }
-  }
+  //.ant-btn {
+  //  min-width: 205px;
+  //  font-size: 18px !important;
+  //  font-weight: 300 !important;
+  //  padding: 12px 80px !important;
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //  min-height: 45px;
+  //  color: #fff;
+  //  //background: transparent;
+  //  border: 1px solid $green;
+  //  border: none;
+  //  line-height: 1;
+  //
+  //  &:hover {
+  //    border: 1px solid $green;
+  //    color: $white;
+  //    background: transparent;
+  //  }
+  //
+  //  &:active {
+  //    color: $white;
+  //    background: rgba(11, 171, 118, 0.70);
+  //    border: 1px solid #01FCAD;
+  //    box-shadow: inset 4px 4px 5px 0 rgba(61, 227, 160, 0.33);
+  //  }
+  //
+  //  &:focus {
+  //    color: $white;
+  //    background: rgba(11, 171, 118, 0.70);
+  //    border: 1px solid #01FCAD;
+  //    box-shadow: inset 4px 4px 5px 0 rgba(61, 227, 160, 0.33);
+  //  }
+  //}
+  //
+  //.ant-btn[disabled] {
+  //  background: transparent;
+  //  opacity: .35;
+  //  color: $white;
+  //  border: 1px solid $green;
+  //
+  //  &:hover {
+  //    border: 1px solid $green;
+  //    color: $white;
+  //    background: transparent;
+  //    opacity: .35;
+  //  }
+  //}
 }

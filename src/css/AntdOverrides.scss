@@ -44,41 +44,41 @@ select:-webkit-autofill:focus {
   letter-spacing: 1.3px;
   font-size: 16px;
 
-  &:focus {
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
-    background: transparent !important;
-    color: $white;
-    box-shadow: none;
-  }
-
-  &:focus-within {
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
-    background: transparent !important;
-    color: $white;
-  }
-
-  &:visited {
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
-    background: transparent !important;
-    color: $white;
-  }
-
-  &:active {
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
-    background: transparent !important;
-    color: $white;
-  }
-
-  &:hover {
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
-    background: transparent !important;
-    color: $white;
-  }
+  //&:focus {
+  //  border: none !important;
+  //  border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+  //  background: transparent !important;
+  //  color: $white;
+  //  box-shadow: none;
+  //}
+  //
+  //&:focus-within {
+  //  border: none !important;
+  //  border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+  //  background: transparent !important;
+  //  color: $white;
+  //}
+  //
+  //&:visited {
+  //  border: none !important;
+  //  border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+  //  background: transparent !important;
+  //  color: $white;
+  //}
+  //
+  //&:active {
+  //  border: none !important;
+  //  border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+  //  background: transparent !important;
+  //  color: $white;
+  //}
+  //
+  //&:hover {
+  //  border: none !important;
+  //  border-bottom: 1px solid rgba(255, 255, 255, .5) !important;
+  //  background: transparent !important;
+  //  color: $white;
+  //}
 
   caret-color: $white;
 }

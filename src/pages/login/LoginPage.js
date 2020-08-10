@@ -37,16 +37,16 @@ const LoginPage = ({isLoading}) => {
             <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({
-                    password: Yup.string()
-                        .required('No password provided.')
-                        .min(8, 'Password should be 8 chars minimum.')
-                        .matches(
-                            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                            'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
-                        ),
                     email: Yup.string()
                         .email('Please enter a valid email address')
-                        .required('Required')
+                        .required('Required'),
+                    password: Yup.string()
+                        .required('No password provided.')
+                        // .min(8, 'Password should be 8 chars minimum.')
+                        // .matches(
+                        //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                        //     'Password must contain an uppercase, a lowercase letter, numbers and symbols.'
+                        // )
                 })}
             >
                 {props => {
@@ -91,7 +91,7 @@ const LoginPage = ({isLoading}) => {
                                     <FloatLabel label="Password" name="password" value={values.password}>
                                         <Input
                                             id='password'
-                                            onChange={password}
+                                            onChange={customHandleChange}
                                             name="password"
                                             value={values.password}
                                             onBlur={handleBlur}
@@ -106,13 +106,13 @@ const LoginPage = ({isLoading}) => {
                                 </Form.Item>
 
                                 <div className='button-wrapper'>
-                                    <Button
-                                        className='next-button'
-                                        disabled={errors.newPassword || !values.newPassword}
+                                    <button
+                                        className='button'
+                                        disabled={false}
                                         onClick={handleOnClick}
                                     >
-                                        OK
-                                    </Button>
+                                        <div className='btn-txt'>Sign In</div>
+                                    </button>
                                 </div>
                             </Form>
                         </div>
