@@ -4,10 +4,9 @@ import {Divider} from 'antd';
 import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
 
 const UserCard = ({user}) => {
-    console.log(user);
 
-// Create a new JavaScript Date object based on the timestamp
-// multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
     const date = new Date(user.BirthDate * 1000);
 
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -35,13 +34,15 @@ const UserCard = ({user}) => {
                     <div className='user-birthday'>
                         Birthday: {day}/{month}/{year}
                     </div>
-                    <div className='user-address'>25 Menachem, Floor 4, Apt 567</div>
+                    <div className='user-address'>
+                        Address: {user.Address}
+                    </div>
                 </div>
                 <Divider className='divider'/>
                 <div className='user-email-wrapper'>
                     <div className='flex'>
                         <MailOutlined/>
-                        <a href='mailto:test@gmail.com' className='user-email'>test@gmail.com</a>
+                        <a href={`mailto:${user.Email}`} className='user-email'>{user.Email}</a>
                     </div>
                     <button className='delete-user'>
                         <DeleteOutlined/>
