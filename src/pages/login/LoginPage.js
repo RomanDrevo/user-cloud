@@ -12,7 +12,7 @@ import {COLORS} from '../../utils/constatns';
 import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
 import FormLocker from '../../components/form-locker/FormLocker';
 import {setLoading} from '../../store/actions/uIStateActions';
-import {MailOutlined, LockOutlined} from '@ant-design/icons';
+import {MailOutlined, LockOutlined, CloudOutlined} from '@ant-design/icons';
 
 const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) => {
 
@@ -56,6 +56,14 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
 
     return (
         <div className={style['login-page-wrapper']}>
+            <div className='logo'>
+                <CloudOutlined />
+                <div className='dashed' />
+                <div className='logo-text'>UserCloud</div>
+            </div>
+
+            <div className='signin-text'>Sign in</div>
+
             <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({
