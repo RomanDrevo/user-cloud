@@ -3,33 +3,48 @@ import style from './UserCard.module.scss';
 import {Divider} from 'antd';
 import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
 
+const UserCard = ({user}) => {
+    console.log(user);
 
-const UserCard = () => {
-    return(
+// Create a new JavaScript Date object based on the timestamp
+// multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    const date = new Date(user.BirthDate * 1000);
+
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    const month = months[date.getMonth()];
+
+    const year = date.getFullYear();
+
+    const day = date.getDate();
+
+    return (
         <div className={style['user-card-wrapper']}>
             <div className='user-card'>
-                <div className='cut-1' />
+                <div className='cut-1'/>
                 <div className='userpic-wrapper'>
-                    <img />
+                    <img src={user.Photo}/>
                 </div>
-                <Divider className='divider' />
-                <div className='user-name'>John Doe</div>
-                <div className='user-role'>VP R&D</div>
-                <Divider className='divider' />
-                <div className='cut-2' />
+                <Divider className='divider'/>
+                <div className='user-name'>{user.FirstName}</div>
+                <div className='user-role'>{user.Role}</div>
+                <Divider className='divider'/>
+                <div className='cut-2'/>
                 <div className='user-details'>
-                    <div className='user-id'>ID: 1234757499</div>
-                    <div className='user-birthday'>1/4/33</div>
+                    <div className='user-id'>ID: {user.ID}</div>
+                    <div className='user-birthday'>
+                        Birthday: {day}/{month}/{year}
+                    </div>
                     <div className='user-address'>25 Menachem, Floor 4, Apt 567</div>
                 </div>
-                <Divider className='divider' />
+                <Divider className='divider'/>
                 <div className='user-email-wrapper'>
                     <div className='flex'>
-                        <MailOutlined />
-                        <div className='user-email'>test@gmail.com</div>
+                        <MailOutlined/>
+                        <a href='mailto:test@gmail.com' className='user-email'>test@gmail.com</a>
                     </div>
                     <button className='delete-user'>
-                        <DeleteOutlined />
+                        <DeleteOutlined/>
                     </button>
                 </div>
             </div>

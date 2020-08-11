@@ -2,24 +2,17 @@ import actionsTypes from '../actionsTypes';
 import createReducer from '../reducers/createReducer';
 
 const initialState = {
-  data: []
+  users: []
 };
 
-// const headerReducer = createReducer(initialState, {
-//   [actionsTypes.SET_ITEMS]: (state, {payload}) => {
-//     return {
-//       ...state,
-//       data: payload
-//     };
-//   },
-//   [actionsTypes.ADD_ITEM]: (state, {payload}) => {
-//     const newData = [...state.data].push(payload);
-//     return {
-//       ...state,
-//       data: newData
-//     };
-//   }
-// });
+const usersReducer = createReducer(initialState, {
+  [actionsTypes.SET_USERS_TO_STORE]: (state, {payload}) => {
+    return {
+      ...state,
+      users: payload
+    };
+  }
+});
 
-export default headerReducer;
+export default usersReducer;
 

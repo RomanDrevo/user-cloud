@@ -6,10 +6,20 @@
   flex-direction: column;
   align-items: center;
   background: $grey;
-  height: 100vh;
+  //height: 100vh;
+
+  .users-list{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 20px;
+  }
+
+
   .header{
     display: flex;
     align-items: center;
+    margin-top: 35px;
     .title{
       font-size: 28px;
       margin-right: 10px;

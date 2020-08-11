@@ -1,15 +1,15 @@
 import types from '../actionsTypes';
 
-export const fetchItems = data =>{
+export const fetchUsers = data =>{
   return{
-    type: types.FETCH_ITEMS,
+    type: types.FETCH_USERS,
     payload: data
   };
 };
 
-export const setItems = data =>{
+export const setUsersToStore = data =>{
   return{
-    type: types.SET_ITEMS,
+    type: types.SET_USERS_TO_STORE,
     payload: data
   };
 };

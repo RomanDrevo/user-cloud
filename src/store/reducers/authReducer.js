@@ -22,7 +22,6 @@ const authReducer = createReducer(initialState, {
     },
 
     [actionsTypes.LOGIN_SUCCESS]: (state, {payload}) => {
-        console.log('here! 666');
         return {
             ...state,
             isAuthenticated: true,
