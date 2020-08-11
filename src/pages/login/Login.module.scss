@@ -24,6 +24,12 @@
   }
 
   .ant-form {
+    .anticon{
+      color: $login-btn;
+      position: absolute;
+      top: 7px;
+      left: -10px;
+    }
     .ant-input-affix-wrapper {
       background: none;
       border: none;

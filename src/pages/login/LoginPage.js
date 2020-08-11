@@ -12,7 +12,7 @@ import {COLORS} from '../../utils/constatns';
 import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
 import FormLocker from '../../components/form-locker/FormLocker';
 import {setLoading} from '../../store/actions/uIStateActions';
-import MailOutlined from '@ant-design/icons';
+import {MailOutlined, LockOutlined} from '@ant-design/icons';
 
 const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) => {
 
@@ -107,6 +107,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
                                 </Form.Item>
 
                                 <Form.Item>
+                                    <LockOutlined />
                                     <FloatLabel label="Password" name="password" value={values.password}>
                                         <Input
                                             type='password'

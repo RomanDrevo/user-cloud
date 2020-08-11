@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'antd';
-import {connect} from "react-redux";
-import {logout} from "../../store/actions/authActions";
+import {connect} from 'react-redux';
+import {logout} from '../../store/actions/authActions';
 
 const UsersPage = ({logout}) => {
     const handleLogout = () => {
