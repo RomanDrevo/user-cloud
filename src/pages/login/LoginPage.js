@@ -12,6 +12,7 @@ import {COLORS} from '../../utils/constatns';
 import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
 import FormLocker from '../../components/form-locker/FormLocker';
 import {setLoading} from '../../store/actions/uIStateActions';
+import MailOutlined from '@ant-design/icons';
 
 const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) => {
 
@@ -31,7 +32,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
         };
 
         if (isAuthenticated) {
-            history.push('/users');
+            history.push('/');
         } else {
             redirect();
         }
@@ -87,6 +88,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
                         <div className='flex flex-column items-center'>
                             <Form name='forgot-password-email' className='forgot-password-email'>
                                 <Form.Item>
+                                    <MailOutlined />
                                     <FloatLabel label="Email" name="email" value={values.email}>
                                         <Input
                                             id='email'

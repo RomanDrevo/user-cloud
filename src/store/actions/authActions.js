@@ -10,7 +10,7 @@ export const login = data =>{
 
 export const logout = () => ({type: types.LOG_OUT});
 
-export function setLoginResultToStore(data) {
+export const setLoginResultToStore = (data) => {
   console.log({data});
   return{
     type: types.SET_LOGIN_RESULT_TO_STORE,

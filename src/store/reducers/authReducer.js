@@ -30,7 +30,10 @@ const authReducer = createReducer(initialState, {
         };
     },
 
-  [actionsTypes.LOG_OUT]: () => initialState,
+  [actionsTypes.LOG_OUT]: () => {
+      localStorage.removeItem('token');
+      return initialState;
+  },
 
   [actionsTypes.SET_IS_AUTHENTICATED]: (state, {payload}) => {
     return{
