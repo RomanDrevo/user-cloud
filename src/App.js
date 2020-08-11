@@ -3,9 +3,9 @@ import style from './css/App.scss';
 import {connect} from 'react-redux';
 import PageLayout from './components/pageLayout/PageLayout';
 import {Route, Switch} from 'react-router-dom';
-import LoginPage from "./pages/login/LoginPage";
-import ProtectedRoute from "./ProtectedRoute";
-import UsersPage from "./pages/users/UsersPage";
+import LoginPage from './pages/login/LoginPage';
+import ProtectedRoute from './ProtectedRoute';
+import UsersPage from './pages/users/UsersPage';
 // import {Route, Switch} from 'react-router-dom';
 
 const App = () => {

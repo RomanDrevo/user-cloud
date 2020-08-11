@@ -3,6 +3,8 @@ import {Button} from 'antd';
 import {connect} from 'react-redux';
 import {logout} from '../../store/actions/authActions';
 import style from './UsersPage.module.scss';
+import UserCard from "../../components/user-card/UserCard";
+
 
 const UsersPage = ({logout}) => {
     const handleLogout = () => {
@@ -14,6 +16,8 @@ const UsersPage = ({logout}) => {
               <div className='title'>Organization Users</div>
               <Button onClick={handleLogout}>Logout</Button>
           </div>
+
+          <UserCard />
 
       </div>
     );

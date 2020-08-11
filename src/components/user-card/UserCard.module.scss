@@ -1,0 +1,109 @@
+@import "../../css/Colors.scss";
+
+
+.user-card-wrapper :global{
+  position: relative;
+  min-width: 236px;
+  min-height: 367px;
+  background: $black;
+  padding: 22px;
+  .user-card{
+    //border: 1px solid red;
+    .user-name{
+      font-size: 18px;
+    }
+    .user-role{
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+    }
+    .cut-1{
+      width: 20px;
+      height: 20px;
+      background: $grey;
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      transform: rotate(45deg);
+    }
+    .cut-2{
+      width: 20px;
+      height: 20px;
+      background: $grey;
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      transform: rotate(45deg);
+    }
+    .userpic-wrapper{
+      width: 75px;
+      height: 75px;
+      border: 1px solid red;
+      margin-bottom: 20px;
+    }
+    .divider{
+      background: $divider;
+      margin: 0;
+    }
+  }
+  .button {
+    width: 150px;
+    height: 48px;
+    margin-top: 76px;
+    overflow: hidden;
+    position: relative;
+    color: $white;
+    background: transparent;
+    border: none;
+    opacity: .6;
+    cursor: pointer;
+    &:disabled{
+      &:before{
+        opacity: .4;
+
+      }
+      cursor: not-allowed;
+    }
+    .btn-txt{
+      position: relative;
+      top: -186px;
+      font-size: 14px;
+      color: $black;
+    }
+    &:hover{
+      opacity: 1;
+    }
+    &:focus{
+      border: none;
+      outline: none;
+    }
+    &:active{
+      border: none;
+    }
+  }
+
+  .button::before {
+    content: '';
+    display: block;
+    background: $login-btn;
+    width: 188px;
+    height: 200px;
+    transform: rotate(45deg);
+    position: relative;
+    top: -100px;
+    right: 50px;
+  }
+
+  .button::after {
+    content: "";
+    display: block;
+    background: black;
+    width: 188px;
+    height: 200px;
+    transform: rotate(45deg);
+    position: relative;
+    top: -436px;
+    right: 108px;
+  }
+}
