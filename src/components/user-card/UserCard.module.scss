@@ -46,64 +46,36 @@
       background: $divider;
       margin: 0;
     }
-  }
-  .button {
-    width: 150px;
-    height: 48px;
-    margin-top: 76px;
-    overflow: hidden;
-    position: relative;
-    color: $white;
-    background: transparent;
-    border: none;
-    opacity: .6;
-    cursor: pointer;
-    &:disabled{
-      &:before{
-        opacity: .4;
+    .user-details{
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      margin: 25px 0;
+      .user-birthday{
+        margin: 20px 0;
+      }
+    }
+    .user-email-wrapper{
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .anticon-mail{
+        color: $login-btn;
+        font-size: 25px;
+        margin-right: 5px;
+      }
+      .anticon-delete{
+        cursor: pointer;
+        color: #888888;
+      }
+      .user-email{
 
       }
-      cursor: not-allowed;
+      .delete-user{
+        background: transparent;
+        border: none;
+      }
     }
-    .btn-txt{
-      position: relative;
-      top: -186px;
-      font-size: 14px;
-      color: $black;
-    }
-    &:hover{
-      opacity: 1;
-    }
-    &:focus{
-      border: none;
-      outline: none;
-    }
-    &:active{
-      border: none;
-    }
-  }
-
-  .button::before {
-    content: '';
-    display: block;
-    background: $login-btn;
-    width: 188px;
-    height: 200px;
-    transform: rotate(45deg);
-    position: relative;
-    top: -100px;
-    right: 50px;
-  }
-
-  .button::after {
-    content: "";
-    display: block;
-    background: black;
-    width: 188px;
-    height: 200px;
-    transform: rotate(45deg);
-    position: relative;
-    top: -436px;
-    right: 108px;
   }
 }
