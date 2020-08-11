@@ -8,6 +8,7 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import reducers from './store/reducers';
 import {watchSaga} from './store/saga';
 import 'antd/dist/antd.css';
+import './css/index.scss';
 
 const
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose,

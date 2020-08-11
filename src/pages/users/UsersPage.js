@@ -2,15 +2,19 @@ import React from 'react';
 import {Button} from 'antd';
 import {connect} from 'react-redux';
 import {logout} from '../../store/actions/authActions';
+import style from './UsersPage.module.scss';
 
 const UsersPage = ({logout}) => {
     const handleLogout = () => {
         logout();
     };
     return (
-      <div>
-          <h1>USERS</h1>
-          <Button onClick={handleLogout}>Logout</Button>
+      <div className={style['users-page-wrapper']}>
+          <div className='header'>
+              <div className='title'>Organization Users</div>
+              <Button onClick={handleLogout}>Logout</Button>
+          </div>
+
       </div>
     );
 };
