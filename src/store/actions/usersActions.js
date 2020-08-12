@@ -15,7 +15,6 @@ export const setUsersToStore = data =>{
 };
 
 export const deleteUser = data =>{
-  console.log(data);
   return{
     type: types.DELETE_USER,
     payload: data
@@ -23,7 +22,6 @@ export const deleteUser = data =>{
 };
 
 export const deleteUserSuccess = data =>{
-  console.log(data);
   return{
     type: types.DELETE_USER_SUCCESS,
     payload: data

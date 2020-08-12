@@ -71,11 +71,8 @@ export function* deleteUserSaga(data) {
       yield put (toggleDeleteUserModal());
       yield put (openSuccessDeleteNotification());
     }
-
     yield put(setLoading(false));
-
   } catch (error) {
-    console.log(error);
     yield put(setLoading(false));
 
     yield put(

@@ -17,8 +17,6 @@ const App = ({isErrorWindowOpen, errorObject, toggleErrorWindowIsOpen}) => {
         toggleErrorWindowIsOpen();
     };
 
-    console.log('--isErrorWindowOpen: ', isErrorWindowOpen);
-
     return (
         <div className={style['app-wrapper']}>
             <ModalWindow
