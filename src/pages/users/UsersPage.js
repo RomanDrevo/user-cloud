@@ -7,6 +7,7 @@ import UserCard from '../../components/user-card/UserCard';
 import {fetchUsers} from '../../store/actions/usersActions';
 import {getUsers, isLoading} from '../../store/selectors';
 import Spinner from '../../components/spinner';
+import PageLayout from "../../components/page-layout/PageLayout";
 
 const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
 
@@ -22,22 +23,22 @@ const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
 
     return (
       <div className={style['users-page-wrapper']}>
-          <div className='header'>
-              <div className='title'>Organization Users</div>
-              <Button onClick={handleLogout}>Logout</Button>
-          </div>
-
-
-          {
-              users.length &&
-              <div className='users-list'>
-                  {
-                      users.map(user => <UserCard key={user.ID} user={user} />)
-                  }
-
+          <PageLayout>
+              <div className='header'>
+                  <div className='title'>Organization Users</div>
+                  <Button onClick={handleLogout}>Logout</Button>
               </div>
-          }
 
+              {
+                  users.length &&
+                  <div className='users-list'>
+                      {
+                          users.map(user => <UserCard key={user.ID} user={user} />)
+                      }
+
+                  </div>
+              }
+          </PageLayout>
 
 
       </div>

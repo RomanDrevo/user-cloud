@@ -8,32 +8,11 @@
   align-items: center;
   background: $black;
 
-  .logo{
-    display: flex;
-    align-items: center;
-    position: relative;
-    .dashed{
-      position: absolute;
-      width: 50px;
-      border-bottom: 4px dashed #fff;
-      top: 46px;
-      left: 20px;
-    }
-    .anticon{
-      font-size: 75px;
-      color: $login-btn ;
-    }
-    .logo-text{
-      font-size: 28px;
-      border-bottom: 4px solid $white;
-      line-height: 0.7;
-    }
-  }
-
   .signin-text{
     font-size: 22px;
     margin-top: 40px;
     margin-bottom: 40px;
+    color: $white;
   }
 
   .input-feedback {

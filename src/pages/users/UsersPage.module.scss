@@ -13,6 +13,21 @@
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 20px;
+
+  }
+
+  @media only screen and (max-width: 600px) {
+    .users-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+    }
+    .ant-layout-content{
+      margin: 0!important;
+    }
+    .site-layout-background{
+      padding: 5px!important;
+    }
   }
 
 

@@ -13,11 +13,12 @@ import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker'
 import FormLocker from '../../components/form-locker/FormLocker';
 import {setLoading} from '../../store/actions/uIStateActions';
 import {MailOutlined, LockOutlined, CloudOutlined} from '@ant-design/icons';
+import Logo from "../../components/logo/Logo";
 
 const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) => {
 
     useEffect(() => {
-        const redirect = async () =>{
+        const redirect = async () => {
             setLoading(true);
             try {
                 const token = await localStorage.getItem('token');
@@ -25,7 +26,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
                     setLoading(false);
                     loginSuccess(true);
                 }
-            }catch (e) {
+            } catch (e) {
                 console.log('--er: ', e);
             }
 
@@ -56,11 +57,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
 
     return (
         <div className={style['login-page-wrapper']}>
-            <div className='logo'>
-                <CloudOutlined />
-                <div className='dashed' />
-                <div className='logo-text'>UserCloud</div>
-            </div>
+            <Logo/>
 
             <div className='signin-text'>Sign in</div>
 
@@ -96,7 +93,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
                         <div className='flex flex-column items-center'>
                             <Form name='forgot-password-email' className='forgot-password-email'>
                                 <Form.Item>
-                                    <MailOutlined />
+                                    <MailOutlined/>
                                     <FloatLabel label="Email" name="email" value={values.email}>
                                         <Input
                                             id='email'
@@ -115,7 +112,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
                                 </Form.Item>
 
                                 <Form.Item>
-                                    <LockOutlined />
+                                    <LockOutlined/>
                                     <FloatLabel label="Password" name="password" value={values.password}>
                                         <Input
                                             type='password'

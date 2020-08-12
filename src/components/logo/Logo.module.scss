@@ -1,0 +1,26 @@
+@import "../../css/Colors.scss";
+
+
+.logo-wrapper :global{
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: $white;
+  .dashed{
+    position: absolute;
+    width: 50px;
+    border-bottom: 4px dashed #fff;
+    top: 46px;
+    left: 20px;
+  }
+  .anticon{
+    font-size: 75px;
+    color: $login-btn ;
+  }
+  .logo-text{
+    font-size: 28px;
+    border-bottom: 4px solid $white;
+    line-height: 0.7;
+  }
+}
+

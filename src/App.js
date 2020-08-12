@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import style from './css/App.scss';
 import {connect} from 'react-redux';
-import PageLayout from './components/pageLayout/PageLayout';
+import PageLayout from './components/page-layout/PageLayout';
 import {Route, Switch} from 'react-router-dom';
 import LoginPage from './pages/login/LoginPage';
 import ProtectedRoute from './ProtectedRoute';
@@ -12,14 +12,12 @@ const App = () => {
 
   return (
       <div className={style['app-wrapper']}>
-        <PageLayout>
           <div className="main-page-content">
               <Switch>
                   <ProtectedRoute path='/' exact component={UsersPage}/>
                   <Route path='/login' exact component={LoginPage}/>
               </Switch>
           </div>
-        </PageLayout>
       </div>
   );
 };

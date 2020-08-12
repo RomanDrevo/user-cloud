@@ -60,7 +60,12 @@ select:-webkit-autofill:focus {
   border: none;
 }
 
-
+// layout
+.ant-layout{
+  margin: 0;
+  width: 100%;
+  background: $grey;
+}
 
 
 
