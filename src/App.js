@@ -10,6 +10,7 @@ import {capitalizeFirstLetter} from './utils/helpers';
 import ModalWindow from './components/modal-window/ModalWindow';
 import {getErrorObject, getIsErrorWindowOpen} from './store/selectors';
 import {toggleErrorWindowIsOpen} from './store/actions/uIStateActions';
+import AddUserPage from "./pages/add-user/AddUserPage";
 
 const App = ({isErrorWindowOpen, errorObject, toggleErrorWindowIsOpen}) => {
 
@@ -28,6 +29,7 @@ const App = ({isErrorWindowOpen, errorObject, toggleErrorWindowIsOpen}) => {
             <div className="main-page-content">
                 <Switch>
                     <ProtectedRoute path='/' exact component={UsersPage}/>
+                    <ProtectedRoute path='/add-user' exact component={AddUserPage}/>
                     <Route path='/login' exact component={LoginPage}/>
                 </Switch>
             </div>

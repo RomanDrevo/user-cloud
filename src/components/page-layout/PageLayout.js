@@ -1,16 +1,11 @@
 import React, {useState} from 'react';
 import style from './PageLayout.module.scss';
 import {Layout, Menu} from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    TeamOutlined,
-    UserOutlined, LogoutOutlined,
-} from '@ant-design/icons';
+import {UserAddOutlined, UserOutlined, LogoutOutlined,} from '@ant-design/icons';
 import Logo from '../logo/Logo';
+import {Link} from "react-router-dom";
 
 const {Header, Content, Sider} = Layout;
-const {SubMenu} = Menu;
 
 const PageLayout = ({children, handleLogout}) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -20,8 +15,8 @@ const PageLayout = ({children, handleLogout}) => {
     };
 
     const handleOnclick = () => {
-        handleLogout()
-    }
+        handleLogout();
+    };
 
     return (
         <Layout className={style['page-layout-wrapper']} style={{minHeight: '100vh'}}>
@@ -31,9 +26,17 @@ const PageLayout = ({children, handleLogout}) => {
             <Layout className="site-layout">
                 <Sider width={150} collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="8" icon={<UserOutlined />} >
-                            Users
+                        <Menu.Item key="7" icon={<UserOutlined />} >
+                            <Link to='/'>
+                                Users
+                            </Link>
                         </Menu.Item>
+                        <Menu.Item key="8" icon={<UserAddOutlined />} >
+                            <Link to='/add-user'>
+                                Add User
+                            </Link>
+                        </Menu.Item>
+
                         <Menu.Item key="9" icon={<LogoutOutlined/>} onClick={handleOnclick}>
                             Logout
                         </Menu.Item>
