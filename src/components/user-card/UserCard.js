@@ -4,7 +4,7 @@ import {Divider} from 'antd';
 import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
 import {capitalizeFirstLetter} from '../../utils/helpers';
 
-const UserCard = ({user}) => {
+const UserCard = ({user, handleDeleteUser}) => {
 
     // Create a new JavaScript Date object based on the timestamp
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -17,6 +17,10 @@ const UserCard = ({user}) => {
     const year = date.getFullYear();
 
     const day = date.getDate();
+
+    const handleOnClick = objectId => {
+        handleDeleteUser(objectId)
+    }
 
     return (
         <div className={style['user-card-wrapper']}>
@@ -45,7 +49,7 @@ const UserCard = ({user}) => {
                         <MailOutlined/>
                         <a href={`mailto:${user.Email}`} className='user-email'>{user.Email}</a>
                     </div>
-                    <button className='delete-user'>
+                    <button className='delete-user' onClick={() => handleOnClick(user.objectId)}>
                         <DeleteOutlined/>
                     </button>
                 </div>

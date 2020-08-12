@@ -7,3 +7,16 @@ export const setLoading = data =>{
     };
 };
 
+export const toggleDeleteUserModal = () =>{
+    return{
+        type: types.TOGGLE_DELETE_USER_MODAL
+    };
+};
+
+export const openSuccessDeleteNotification = () =>{
+    return{
+        type: types.OPEN_SUCCESS_DELETE_NOTIFICATION
+    };
+};
+
+

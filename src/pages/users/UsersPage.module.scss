@@ -6,7 +6,10 @@
   flex-direction: column;
   align-items: center;
   background: $grey;
-  //height: 100vh;
+  .ant-alert{
+    position: absolute;
+    width: 40%;
+  }
 
   .users-list{
     margin-top: 70px;

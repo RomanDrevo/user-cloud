@@ -4,6 +4,8 @@ import createReducer from './createReducer';
 const initialState = {
     isLoading: false,
     isErrorWindowOpen: false,
+    isModalVisible: false,
+    isSuccessDeleteNotificationOpen: false
 };
 
 const UIStateReducer = createReducer(initialState, {
@@ -11,6 +13,18 @@ const UIStateReducer = createReducer(initialState, {
         return {
             ...state,
             isLoading: payload
+        };
+    },
+    [actionsTypes.TOGGLE_DELETE_USER_MODAL]: (state) => {
+        return {
+            ...state,
+            isModalVisible: !state.isModalVisible
+        };
+    },
+    [actionsTypes.OPEN_SUCCESS_DELETE_NOTIFICATION]: (state) => {
+        return {
+            ...state,
+            isSuccessDeleteNotificationOpen: true
         };
     }
 });

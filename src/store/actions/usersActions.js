@@ -14,16 +14,18 @@ export const setUsersToStore = data =>{
   };
 };
 
-export const addItem = data =>{
+export const deleteUser = data =>{
+  console.log(data);
   return{
-    type: types.ADD_ITEM,
+    type: types.DELETE_USER,
     payload: data
   };
 };
 
-export const editItem = data =>{
+export const deleteUserSuccess = data =>{
+  console.log(data);
   return{
-    type: types.EDIT_ITEM,
+    type: types.DELETE_USER_SUCCESS,
     payload: data
   };
 };

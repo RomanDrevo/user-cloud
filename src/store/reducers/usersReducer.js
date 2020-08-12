@@ -11,6 +11,13 @@ const usersReducer = createReducer(initialState, {
       ...state,
       users: payload
     };
+  },
+  [actionsTypes.DELETE_USER_SUCCESS]: (state, {payload}) => {
+    console.log(payload);
+    return {
+      ...state,
+      users: state.users.filter(user => user.objectId !== payload)
+    };
   }
 });
 
