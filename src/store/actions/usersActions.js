@@ -28,3 +28,17 @@ export const deleteUserSuccess = data =>{
   };
 };
 
+export const createUser = data =>{
+  return{
+    type: types.CREATE_USER,
+    payload: data
+  };
+};
+
+export const setNewUserToStore = data =>{
+  return{
+    type: types.SET_USERS_TO_STORE,
+    payload: data
+  };
+};
+
