@@ -14,8 +14,9 @@ import {isAuthenticated, isLoading} from "../../store/selectors";
 import {login, loginSuccess, setIsAuthenticated} from "../../store/actions/authActions";
 import {setLoading} from "../../store/actions/uIStateActions";
 import {connect} from "react-redux";
+import {createUser} from "../../store/actions/usersActions";
 
-const AddUserPage = ({isLoading}) => {
+const AddUserPage = ({isLoading, createUser}) => {
 
     const [{firstName, lastName, birthDate, email, role, address, photo}, setState] = useState({
         firstName: '',

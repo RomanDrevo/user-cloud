@@ -6,12 +6,8 @@
   //height: 100vh;
   color: white;
   .ant-layout-sider{
-    //border: 1px dashed red;
-    .ant-menu-item{
-      color: $login-btn;
-    }
-    .anticon{
-      color: $login-btn;
+    .ant-menu-item, .anticon, a {
+      color: $login-btn!important;
     }
   }
 }
