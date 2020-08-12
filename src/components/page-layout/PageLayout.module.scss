@@ -5,5 +5,14 @@
   margin: 0 auto;
   //height: 100vh;
   color: white;
+  .ant-layout-sider{
+    //border: 1px dashed red;
+    .ant-menu-item{
+      color: $login-btn;
+    }
+    .anticon{
+      color: $login-btn;
+    }
+  }
 }
 

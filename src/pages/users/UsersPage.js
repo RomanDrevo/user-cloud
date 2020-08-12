@@ -7,7 +7,7 @@ import UserCard from '../../components/user-card/UserCard';
 import {fetchUsers} from '../../store/actions/usersActions';
 import {getUsers, isLoading} from '../../store/selectors';
 import Spinner from '../../components/spinner';
-import PageLayout from "../../components/page-layout/PageLayout";
+import PageLayout from '../../components/page-layout/PageLayout';
 
 const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
 
@@ -23,11 +23,12 @@ const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
 
     return (
       <div className={style['users-page-wrapper']}>
-          <PageLayout>
-              <div className='header'>
-                  <div className='title'>Organization Users</div>
-                  <Button onClick={handleLogout}>Logout</Button>
-              </div>
+          <PageLayout handleLogout={handleLogout}>
+              <div className='title'>Organization Users</div>
+
+              {
+                  isLoading && <Spinner />
+              }
 
               {
                   users.length &&
@@ -39,7 +40,6 @@ const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
                   </div>
               }
           </PageLayout>
-
 
       </div>
     );

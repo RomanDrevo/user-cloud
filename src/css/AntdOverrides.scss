@@ -65,6 +65,18 @@ select:-webkit-autofill:focus {
   margin: 0;
   width: 100%;
   background: $grey;
+  .ant-layout-header{
+    background: $black;
+  }
+  .ant-layout-sider{
+    background: $black;
+    .ant-menu{
+      background: $black;
+    }
+    .ant-layout-sider-trigger{
+      background: black;
+    }
+  }
 }
 
 

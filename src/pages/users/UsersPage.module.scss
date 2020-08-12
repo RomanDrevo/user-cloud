@@ -9,7 +9,7 @@
   //height: 100vh;
 
   .users-list{
-    margin-top: 100px;
+    margin-top: 70px;
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 20px;
@@ -29,16 +29,9 @@
       padding: 5px!important;
     }
   }
-
-
-  .header{
-    display: flex;
-    align-items: center;
-    margin-top: 35px;
-    .title{
-      font-size: 28px;
-      margin-right: 10px;
-    }
+  .title{
+    font-size: 28px;
+    margin-right: 10px;
+    text-align: center;
   }
-
 }
