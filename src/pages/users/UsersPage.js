@@ -8,6 +8,7 @@ import {fetchUsers} from '../../store/actions/usersActions';
 import {getUsers, isLoading} from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
+import EmptyState from "../../components/empty-state/EmptyState";
 
 const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
 
@@ -19,26 +20,23 @@ const UsersPage = ({logout, fetchUsers, users, isLoading}) => {
         logout();
     };
 
-    // if (isLoading) return <Spinner />;
-
     return (
       <div className={style['users-page-wrapper']}>
           <PageLayout handleLogout={handleLogout}>
               <div className='title'>Organization Users</div>
 
               {
-                  isLoading && <Spinner />
+                  isLoading ? <Spinner /> :
+                      users.length ?
+                          <div className='users-list'>
+                              {
+                                  users.map(user => <UserCard key={user.ID} user={user} />)
+                              }
+
+                          </div>
+                          : <EmptyState title='Oops!' description='No users found.' />
               }
 
-              {
-                  users.length &&
-                  <div className='users-list'>
-                      {
-                          users.map(user => <UserCard key={user.ID} user={user} />)
-                      }
-
-                  </div>
-              }
           </PageLayout>
 
       </div>

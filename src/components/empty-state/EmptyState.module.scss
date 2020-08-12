@@ -1,0 +1,35 @@
+@import "../../css/Colors.scss";
+
+.empty-state :global {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+
+  .image {
+    width: 221px;
+    height: 182px;
+    margin-bottom: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  .empty-state-text{
+    position: absolute;
+    color: teal;
+    .title {
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 7px;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+}
