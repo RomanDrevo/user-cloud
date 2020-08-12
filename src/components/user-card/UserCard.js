@@ -2,6 +2,7 @@ import React from 'react';
 import style from './UserCard.module.scss';
 import {Divider} from 'antd';
 import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
+import {capitalizeFirstLetter} from '../../utils/helpers';
 
 const UserCard = ({user}) => {
 
@@ -22,11 +23,11 @@ const UserCard = ({user}) => {
             <div className='user-card'>
                 <div className='cut-1'/>
                 <div className='userpic-wrapper'>
-                    <img src={user.Photo}/>
+                    <img alt='userpic' src={user.Photo}/>
                 </div>
                 <Divider className='divider'/>
                 <div className='user-name'>{user.FirstName}</div>
-                <div className='user-role'>{user.Role}</div>
+                <div className='user-role'>{capitalizeFirstLetter(user.Role)}</div>
                 <Divider className='divider'/>
                 <div className='cut-2'/>
                 <div className='user-details'>

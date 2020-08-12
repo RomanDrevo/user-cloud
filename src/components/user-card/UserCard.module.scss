@@ -40,8 +40,10 @@
     .userpic-wrapper{
       width: 75px;
       height: 75px;
-      border: 1px solid red;
       margin-bottom: 20px;
+      img{
+        width: 100%;
+      }
     }
     .divider{
       background: $divider;
