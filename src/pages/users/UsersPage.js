@@ -4,7 +4,13 @@ import {logout} from '../../store/actions/authActions';
 import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
 import {deleteUser, fetchUsers} from '../../store/actions/usersActions';
-import {getIsModalVisible, getIsSuccessDeleteNotificationOpen, getUsers, isLoading} from '../../store/selectors';
+import {
+    getErrorObject, getIsErrorWindowOpen,
+    getIsModalVisible,
+    getIsSuccessDeleteNotificationOpen,
+    getUsers,
+    isLoading
+} from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
@@ -32,16 +38,16 @@ const UsersPage = (
         logout();
     };
 
-    const [userObjId, setUserObjId] = useState('');
+    const [user, setUser] = useState('');
 
-    const handleDeleteUser = objectId => {
+    const handleDeleteUser = user => {
         toggleDeleteUserModal();
-        setUserObjId(objectId);
+        setUser(user);
         // deleteUser(objectId);
     };
 
     const handleOk = () => {
-        deleteUser(userObjId);
+        deleteUser(user.objectId);
     };
 
     const handleCancel = () => {
@@ -50,7 +56,7 @@ const UsersPage = (
 
     useEffect(() => {
         if(isSuccessDeleteNotificationOpen){
-            openNotification()
+            openNotification();
         }
     }, [isSuccessDeleteNotificationOpen]);
 
@@ -58,8 +64,7 @@ const UsersPage = (
         notification.open({
             message: '',
             duration: 3,
-            description:
-                'User has been deleted.',
+            description: `User ${user.FirstName} has been deleted.`,
             onClick: () => {
                 console.log('Notification Clicked!');
             },

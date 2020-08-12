@@ -18,8 +18,8 @@ const UserCard = ({user, handleDeleteUser}) => {
 
     const day = date.getDate();
 
-    const handleOnClick = objectId => {
-        handleDeleteUser(objectId)
+    const handleOnClick = user => {
+        handleDeleteUser(user)
     }
 
     return (
@@ -49,7 +49,7 @@ const UserCard = ({user, handleDeleteUser}) => {
                         <MailOutlined/>
                         <a href={`mailto:${user.Email}`} className='user-email'>{user.Email}</a>
                     </div>
-                    <button className='delete-user' onClick={() => handleOnClick(user.objectId)}>
+                    <button className='delete-user' onClick={() => handleOnClick(user)}>
                         <DeleteOutlined/>
                     </button>
                 </div>

@@ -19,4 +19,5 @@ export const openSuccessDeleteNotification = () =>{
     };
 };
 
+export const toggleErrorWindowIsOpen = () => ({type: types.TOGGLE_ERROR_WINDOW_IS_OPEN});
 

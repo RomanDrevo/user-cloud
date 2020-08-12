@@ -26,7 +26,13 @@ const UIStateReducer = createReducer(initialState, {
             ...state,
             isSuccessDeleteNotificationOpen: true
         };
-    }
+    },
+    [actionsTypes.TOGGLE_ERROR_WINDOW_IS_OPEN]: state => {
+        return {
+            ...state,
+            isErrorWindowOpen: !state.isErrorWindowOpen
+        };
+    },
 });
 
 export default UIStateReducer;
