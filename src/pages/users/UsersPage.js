@@ -43,7 +43,6 @@ const UsersPage = (
     const handleDeleteUser = user => {
         toggleDeleteUserModal();
         setUser(user);
-        // deleteUser(objectId);
     };
 
     const handleOk = () => {
