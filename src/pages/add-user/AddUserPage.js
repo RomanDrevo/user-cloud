@@ -10,12 +10,11 @@ import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker'
 import FormLocker from '../../components/form-locker/FormLocker';
 import {COLORS} from '../../utils/constatns';
 import {Formik} from 'formik';
-import {isAuthenticated, isLoading} from "../../store/selectors";
-import {login, loginSuccess, logout, setIsAuthenticated} from "../../store/actions/authActions";
-import {setLoading} from "../../store/actions/uIStateActions";
-import {connect} from "react-redux";
-import {createUser} from "../../store/actions/usersActions";
-
+import {isAuthenticated, isLoading} from '../../store/selectors';
+import {login, loginSuccess, logout, setIsAuthenticated} from '../../store/actions/authActions';
+import {setLoading} from '../../store/actions/uIStateActions';
+import {connect} from 'react-redux';
+import {createUser} from '../../store/actions/usersActions';
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -38,11 +37,20 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
 
     useEffect(() => {
         if(photo){
-            console.log(photo);
-            toBase64(photo).then(res => setState(prevState => ({...prevState, photo: res}))
-        )
+            // console.log(photo.replace('C:\\fakepath\\', ''));
+            const file = document.querySelector('input[type=file]').files[0];
+            const getPhoto = async () => {
+                const base64 = await toBase64(file);
+                console.log(base64)
+                setState(prevState => ({...prevState, photo: base64}));
+
+            }
+
+            getPhoto()
+
+
         }
-    }, [photo])
+    }, [photo]);
 
     const handleOnChange = e => {
         const {name, value} = e.target;
@@ -55,7 +63,7 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
 
     const onChange = (date, dateString) => {
         console.log(date, dateString);
-    }
+    };
 
     const handleLogout = () => {
         logout();
@@ -140,7 +148,7 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                                     </Form.Item>
 
                                     <Form.Item>
-                                        {/*<DatePicker onChange={onChange} />*/}
+                                        {/* <DatePicker onChange={onChange} />*/}
                                         <FloatLabel label="" name="birthDate" value={values.birthDate}>
                                             <Input
                                                 type='date'
