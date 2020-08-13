@@ -26,3 +26,8 @@ export const fetchUsersApi = () => {
 export const deleteUserApi = data => {
     return axios.delete('/cyberhat_users', {data: {objectId: data.payload}});
 };
+
+export const createUserApi = data => {
+    console.log(data);
+    return axios.post('/cyberhat_users', {...data.payload})
+}

@@ -5,7 +5,7 @@ import {
   toggleDeleteUserModal,
   toggleErrorWindowIsOpen
 } from '../actions/uIStateActions';
-import {deleteUserApi, fetchUsersApi, loginApi} from '../../api';
+import {createUserApi, deleteUserApi, fetchUsersApi, loginApi} from '../../api';
 import {loginSuccess} from '../actions/authActions';
 import {deleteUserSuccess, setUsersToStore} from '../actions/usersActions';
 import {setAlert} from '../actions/alertActions';
@@ -83,4 +83,33 @@ export function* deleteUserSaga(data) {
         })
     );
   }
+}
+
+export function* createUserSaga(data) {
+    try {
+        yield put(setLoading(true));
+        const newUser = data.payload;
+        newUser.id = Math.floor(Math.random() * (100000 - 1 + 1)) + 1;
+        newUser.BirthDate = new Date(newUser.birthDate).getTime()
+        delete newUser.birthDate;
+        const response = yield call(createUserApi, data);
+
+        console.log(response);
+
+        if (response.status === 200 && response.data) {
+            yield put (setUsersToStore(response.data));
+            yield put (openSuccessDeleteNotification());
+        }
+        yield put(setLoading(false));
+    } catch (error) {
+        yield put(setLoading(false));
+
+        yield put(
+            setAlert({
+                status: 'error',
+                title: 'Error',
+                message: error.message
+            })
+        );
+    }
 }
