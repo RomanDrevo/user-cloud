@@ -15,13 +15,7 @@ import {login, loginSuccess, logout, setIsAuthenticated} from '../../store/actio
 import {setLoading} from '../../store/actions/uIStateActions';
 import {connect} from 'react-redux';
 import {createUser} from '../../store/actions/usersActions';
-
-const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-});
+import {toBase64} from '../../utils/helpers';
 
 const AddUserPage = ({isLoading, createUser, logout}) => {
 
@@ -37,18 +31,12 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
 
     useEffect(() => {
         if(photo){
-            // console.log(photo.replace('C:\\fakepath\\', ''));
             const file = document.querySelector('input[type=file]').files[0];
             const getPhoto = async () => {
                 const base64 = await toBase64(file);
-                console.log(base64)
                 setState(prevState => ({...prevState, photo: base64}));
-
-            }
-
-            getPhoto()
-
-
+            };
+            getPhoto();
         }
     }, [photo]);
 
@@ -59,6 +47,7 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
 
     const handleOnClick = () => {
         // createUser({firstName, lastName, birthDate, email, role, address, photo});
+        createUser({firstName, lastName, birthDate, email, role, address, photo});
     };
 
     const onChange = (date, dateString) => {
@@ -119,7 +108,8 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                                     <Form.Item>
                                         <FloatLabel label="First Name" name="firstName" value={values.firstName}>
                                             <Input
-                                                id='string'
+                                                id='firstName'
+                                                type='string'
                                                 onChange={customHandleChange}
                                                 name="firstName"
                                                 value={values.firstName}
@@ -144,6 +134,22 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                                         </FloatLabel>
                                         {errors.lastName && touched.lastName && (
                                             <div className="input-feedback">{errors.lastName}</div>
+                                        )}
+                                    </Form.Item>
+
+                                    <Form.Item>
+                                        <FloatLabel label="Email" name="email" value={values.email}>
+                                            <Input
+                                                id='email'
+                                                type='email'
+                                                onChange={customHandleChange}
+                                                name="email"
+                                                value={values.email}
+                                                onBlur={handleBlur}
+                                            />
+                                        </FloatLabel>
+                                        {errors.email && touched.email && (
+                                            <div className="input-feedback">{errors.email}</div>
                                         )}
                                     </Form.Item>
 

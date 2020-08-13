@@ -29,6 +29,7 @@ export const deleteUserSuccess = data =>{
 };
 
 export const createUser = data =>{
+  console.log(data);
   return{
     type: types.CREATE_USER,
     payload: data
