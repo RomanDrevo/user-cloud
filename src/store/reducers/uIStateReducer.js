@@ -5,7 +5,8 @@ const initialState = {
     isLoading: false,
     isErrorWindowOpen: false,
     isModalVisible: false,
-    isSuccessDeleteNotificationOpen: false
+    isNotificationOpen: false,
+    notificationMessage: ''
 };
 
 const UIStateReducer = createReducer(initialState, {
@@ -21,10 +22,11 @@ const UIStateReducer = createReducer(initialState, {
             isModalVisible: !state.isModalVisible
         };
     },
-    [actionsTypes.OPEN_SUCCESS_DELETE_NOTIFICATION]: (state) => {
+    [actionsTypes.OPEN_NOTIFICATION]: (state, {payload}) => {
         return {
             ...state,
-            isSuccessDeleteNotificationOpen: true
+            isNotificationOpen: true,
+            notificationMessage: payload
         };
     },
     [actionsTypes.TOGGLE_ERROR_WINDOW_IS_OPEN]: state => {

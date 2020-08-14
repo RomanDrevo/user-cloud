@@ -9,18 +9,13 @@ const UserCard = ({user, handleDeleteUser}) => {
     // Create a new JavaScript Date object based on the timestamp
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
     const date = new Date(user.BirthDate * 1000);
-
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
     const month = months[date.getMonth()];
-
     const year = date.getFullYear();
-
     const day = date.getDate();
-
     const handleOnClick = user => {
-        handleDeleteUser(user)
-    }
+        handleDeleteUser(user);
+    };
 
     return (
         <div className={style['user-card-wrapper']}>

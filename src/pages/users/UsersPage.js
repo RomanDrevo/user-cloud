@@ -5,17 +5,17 @@ import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
 import {deleteUser, fetchUsers} from '../../store/actions/usersActions';
 import {
-    getErrorObject, getIsErrorWindowOpen,
-    getIsModalVisible,
-    getIsSuccessDeleteNotificationOpen,
+    getIsModalVisible, getIsNotificationOpen, getNotificationMessage,
     getUsers,
     isLoading
 } from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
-import { Modal, notification} from 'antd';
+import { Modal} from 'antd';
 import {toggleDeleteUserModal} from '../../store/actions/uIStateActions';
+import {openNotification} from '../../utils/helpers';
+import {NOTIFICATIONS} from '../../utils/constatns';
 
 const UsersPage = (
     {
@@ -24,9 +24,10 @@ const UsersPage = (
         users,
         isLoading,
         deleteUser,
-        isSuccessDeleteNotificationOpen,
+        isNotificationOpen,
         isModalVisible,
-        toggleDeleteUserModal
+        toggleDeleteUserModal,
+        notificationMessage,
     }
 ) => {
 
@@ -54,21 +55,10 @@ const UsersPage = (
     };
 
     useEffect(() => {
-        if(isSuccessDeleteNotificationOpen){
-            openNotification();
+        if(isNotificationOpen && notificationMessage === NOTIFICATIONS.delete){
+            openNotification(notificationMessage);
         }
-    }, [isSuccessDeleteNotificationOpen]);
-
-    const openNotification = () => {
-        notification.open({
-            message: '',
-            duration: 3,
-            description: `User ${user.FirstName} has been deleted.`,
-            onClick: () => {
-                console.log('Notification Clicked!');
-            },
-        });
-    };
+    }, [isNotificationOpen]);
 
     return (
         <div className={style['users-page-wrapper']}>
@@ -100,7 +90,7 @@ const UsersPage = (
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
-                <h2>Are yoy sure?</h2>
+                <h2>Are you sure?</h2>
             </Modal>
         </div>
     );
@@ -111,7 +101,8 @@ const mapStateToProps = state => {
         users: getUsers(state),
         isLoading: isLoading(state),
         isModalVisible: getIsModalVisible(state),
-        isSuccessDeleteNotificationOpen: getIsSuccessDeleteNotificationOpen(state),
+        isNotificationOpen: getIsNotificationOpen(state),
+        notificationMessage: getNotificationMessage(state),
     };
 };
 

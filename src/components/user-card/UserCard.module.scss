@@ -3,13 +3,12 @@
 
 .user-card-wrapper :global{
   position: relative;
-  min-width: 236px;
+  min-width: 268px;
   min-height: 367px;
   max-width: 300px;
   background: $black;
   padding: 22px;
   .user-card{
-    //border: 1px solid red;
     .user-name{
       font-size: 18px;
     }

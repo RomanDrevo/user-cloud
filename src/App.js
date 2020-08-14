@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import style from './css/App.scss';
 import {connect} from 'react-redux';
-import PageLayout from './components/page-layout/PageLayout';
 import {Route, Switch} from 'react-router-dom';
 import LoginPage from './pages/login/LoginPage';
 import ProtectedRoute from './ProtectedRoute';
@@ -10,7 +9,7 @@ import {capitalizeFirstLetter} from './utils/helpers';
 import ModalWindow from './components/modal-window/ModalWindow';
 import {getErrorObject, getIsErrorWindowOpen} from './store/selectors';
 import {toggleErrorWindowIsOpen} from './store/actions/uIStateActions';
-import AddUserPage from "./pages/add-user/AddUserPage";
+import AddUserPage from './pages/add-user/AddUserPage';
 
 const App = ({isErrorWindowOpen, errorObject, toggleErrorWindowIsOpen}) => {
 

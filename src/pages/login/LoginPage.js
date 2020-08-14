@@ -16,7 +16,6 @@ import {MailOutlined, LockOutlined} from '@ant-design/icons';
 import Logo from '../../components/logo/Logo';
 
 const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) => {
-
     useEffect(() => {
         const redirect = async () =>{
             setLoading(true);
@@ -29,9 +28,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
             }catch (e) {
                 console.log('--er: ', e);
             }
-
         };
-
         if (isAuthenticated) {
             history.push('/');
         } else {
@@ -58,9 +55,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
     return (
         <div className={style['login-page-wrapper']}>
            <Logo />
-
             <div className='signin-text'>Sign in</div>
-
             <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({

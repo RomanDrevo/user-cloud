@@ -1,25 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import style from '../users/UsersPage.module.scss';
+import style from './AddUserPage.module.scss';
 import PageLayout from '../../components/page-layout/PageLayout';
 import * as Yup from 'yup';
 import Spinner from '../../components/spinner';
-import {DatePicker, Form, Input} from 'antd';
-import {LockOutlined, MailOutlined} from '@ant-design/icons';
+import {Button, Form, Input} from 'antd';
 import FloatLabel from '../../components/floatLabel/FloatLabel';
-import FormErrorLocker from '../../components/form-error-locker/FormErrorLocker';
-import FormLocker from '../../components/form-locker/FormLocker';
-import {COLORS} from '../../utils/constatns';
 import {Formik} from 'formik';
-import {isAuthenticated, isLoading} from '../../store/selectors';
-import {login, loginSuccess, logout, setIsAuthenticated} from '../../store/actions/authActions';
-import {setLoading} from '../../store/actions/uIStateActions';
+import {getIsNotificationOpen, getNotificationMessage, isLoading} from '../../store/selectors';
+import {logout} from '../../store/actions/authActions';
 import {connect} from 'react-redux';
 import {createUser} from '../../store/actions/usersActions';
-import {toBase64} from '../../utils/helpers';
+import {openNotification, toBase64} from '../../utils/helpers';
+import {NOTIFICATIONS} from '../../utils/constatns';
 
-const AddUserPage = ({isLoading, createUser, logout}) => {
+const AddUserPage = (
+    {
+        isLoading,
+        createUser,
+        logout,
+        isNotificationOpen,
+        notificationMessage
+    }) => {
 
-    const [{firstName, lastName, birthDate, email, role, address, photo}, setState] = useState({
+    const initialState = {
         firstName: '',
         lastName: '',
         birthDate: '',
@@ -27,10 +30,16 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
         role: '',
         address: '',
         photo: '',
-    });
+    };
+
+    const [{firstName, lastName, birthDate, email, role, address, photo}, setState] = useState(initialState);
+
+    const clearState = () => {
+        setState({ ...initialState });
+    };
 
     useEffect(() => {
-        if(photo){
+        if (photo) {
             const file = document.querySelector('input[type=file]').files[0];
             const getPhoto = async () => {
                 const base64 = await toBase64(file);
@@ -39,6 +48,13 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
             getPhoto();
         }
     }, [photo]);
+
+    useEffect(() => {
+        if (isNotificationOpen && notificationMessage === NOTIFICATIONS.add) {
+            openNotification(notificationMessage);
+            clearState();
+        }
+    }, [isNotificationOpen, notificationMessage]);
 
     const handleOnChange = e => {
         const {name, value} = e.target;
@@ -50,19 +66,13 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
         createUser({firstName, lastName, birthDate, email, role, address, photo});
     };
 
-    const onChange = (date, dateString) => {
-        console.log(date, dateString);
-    };
-
     const handleLogout = () => {
         logout();
     };
 
-    if (isLoading) return <Spinner/>;
-
-    return(
+    return (
         <div className={style['add-user-page-wrapper']}>
-            <PageLayout handleLogout={handleLogout} >
+            <PageLayout handleLogout={handleLogout}>
                 <Formik
                     initialValues={{
                         firstName: '',
@@ -90,9 +100,9 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                             values,
                             touched,
                             errors,
-                            dirty,
                             handleChange,
-                            handleBlur
+                            handleBlur,
+                            isValid
                         } = props;
 
                         const customHandleChange = (e) => {
@@ -112,7 +122,7 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                                                 type='string'
                                                 onChange={customHandleChange}
                                                 name="firstName"
-                                                value={values.firstName}
+                                                value={values.firstName || ''}
                                                 onBlur={handleBlur}
                                             />
                                         </FloatLabel>
@@ -209,7 +219,7 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                                                 id='photo'
                                                 onChange={customHandleChange}
                                                 name="photo"
-                                                value={values.photo}
+                                                // value={values.photo}
                                                 onBlur={handleBlur}
                                             />
                                         </FloatLabel>
@@ -219,17 +229,19 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
                                     </Form.Item>
 
                                     <div className='button-wrapper'>
-                                        <button
+                                        <Button
                                             className='button'
-                                            // disabled={errors.email || !values.email || errors.password || !values.password}
-                                            onClick={handleOnClick}
+                                            disabled={!isValid || Object.keys(touched).length === 0}
+                                            onClick={() => {
+                                                props.resetForm({});
+                                                handleOnClick();
+                                            }}
                                         >
                                             <div className='btn-txt'>Create User</div>
-                                        </button>
+                                        </Button>
                                     </div>
                                 </Form>
                             </div>
-
                         );
                     }}
                 </Formik>
@@ -241,6 +253,8 @@ const AddUserPage = ({isLoading, createUser, logout}) => {
 const mapStateToProps = state => {
     return {
         isLoading: isLoading(state),
+        isNotificationOpen: getIsNotificationOpen(state),
+        notificationMessage: getNotificationMessage(state),
     };
 };
 
