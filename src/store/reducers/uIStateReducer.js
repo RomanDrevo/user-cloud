@@ -29,6 +29,13 @@ const UIStateReducer = createReducer(initialState, {
             notificationMessage: payload
         };
     },
+    [actionsTypes.CLOSE_NOTIFICATION]: (state) => {
+        return {
+            ...state,
+            isNotificationOpen: false,
+            notificationMessage: ''
+        };
+    },
     [actionsTypes.TOGGLE_ERROR_WINDOW_IS_OPEN]: state => {
         return {
             ...state,

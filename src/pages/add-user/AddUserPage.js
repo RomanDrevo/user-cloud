@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {createUser} from '../../store/actions/usersActions';
 import {openNotification, toBase64} from '../../utils/helpers';
 import {NOTIFICATIONS} from '../../utils/constatns';
+import {closeNotification} from '../../store/actions/uIStateActions';
 
 const AddUserPage = (
     {
@@ -19,7 +20,8 @@ const AddUserPage = (
         createUser,
         logout,
         isNotificationOpen,
-        notificationMessage
+        notificationMessage,
+        closeNotification
     }) => {
 
     const initialState = {
@@ -55,6 +57,10 @@ const AddUserPage = (
             clearState();
         }
     }, [isNotificationOpen, notificationMessage]);
+
+    useEffect(() => {
+        closeNotification();
+    }, []);
 
     const handleOnChange = e => {
         const {name, value} = e.target;
@@ -262,6 +268,7 @@ function mapDispatchToProps(dispatch) {
     return {
         createUser: data => dispatch(createUser(data)),
         logout: () => dispatch(logout()),
+        closeNotification: () => dispatch(closeNotification()),
     };
 }
 

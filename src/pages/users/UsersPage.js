@@ -13,7 +13,7 @@ import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
 import { Modal} from 'antd';
-import {toggleDeleteUserModal} from '../../store/actions/uIStateActions';
+import {closeNotification, toggleDeleteUserModal} from '../../store/actions/uIStateActions';
 import {openNotification} from '../../utils/helpers';
 import {NOTIFICATIONS} from '../../utils/constatns';
 
@@ -28,11 +28,13 @@ const UsersPage = (
         isModalVisible,
         toggleDeleteUserModal,
         notificationMessage,
+        closeNotification
     }
 ) => {
 
     useEffect(() => {
         fetchUsers();
+        closeNotification()
     }, []);
 
     const handleLogout = () => {
@@ -111,6 +113,7 @@ function mapDispatchToProps(dispatch) {
         logout: () => dispatch(logout()),
         deleteUser: data => dispatch(deleteUser(data)),
         toggleDeleteUserModal: () => dispatch(toggleDeleteUserModal()),
+        closeNotification: () => dispatch(closeNotification()),
         fetchUsers: () => dispatch(fetchUsers())
     };
 }
