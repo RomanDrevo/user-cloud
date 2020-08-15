@@ -61,6 +61,10 @@
     .site-layout-background{
       padding: 5px!important;
     }
+    .header{
+      display: flex;
+      flex-direction: column;
+    }
   }
   .title{
     font-size: 28px;
