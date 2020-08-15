@@ -1,0 +1,14 @@
+@import "../../css/Colors.scss";
+
+.signup-page-wrapper :global {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $black;
+  button{
+    margin: auto;
+    margin-top: 24px;
+  }
+}

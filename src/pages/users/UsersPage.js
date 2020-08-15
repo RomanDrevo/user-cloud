@@ -12,10 +12,12 @@ import {
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
-import { Modal} from 'antd';
+import {Modal, Input} from 'antd';
 import {closeNotification, toggleDeleteUserModal} from '../../store/actions/uIStateActions';
 import {openNotification} from '../../utils/helpers';
 import {NOTIFICATIONS} from '../../utils/constatns';
+
+const {Search} = Input;
 
 const UsersPage = (
     {
@@ -34,7 +36,7 @@ const UsersPage = (
 
     useEffect(() => {
         fetchUsers();
-        closeNotification()
+        closeNotification();
     }, []);
 
     const handleLogout = () => {
@@ -57,15 +59,24 @@ const UsersPage = (
     };
 
     useEffect(() => {
-        if(isNotificationOpen && notificationMessage === NOTIFICATIONS.delete){
+        if (isNotificationOpen && notificationMessage === NOTIFICATIONS.delete) {
             openNotification(notificationMessage);
         }
     }, [isNotificationOpen]);
 
     return (
-        <div className={style['users-page-wrapper']}>
-            <PageLayout handleLogout={handleLogout}>
-                <div className='title'>Organization Users</div>
+
+        <PageLayout handleLogout={handleLogout}>
+            <div className={style['users-page-wrapper']}>
+                <div className='header'>
+                    <div className='title'>Organization Users</div>
+                    <Search
+                        placeholder="input search text"
+                        onSearch={value => console.log(value)}
+                        style={{width: 200}}
+                    />
+                </div>
+
                 {
                     isLoading ? <Spinner/> :
                         users.length ?
@@ -82,19 +93,19 @@ const UsersPage = (
                             </div>
                             : <EmptyState title='Oops!' description='No users found.'/>
                 }
-            </PageLayout>
+                <Modal
+                    centered
+                    transparent
+                    title="User will be deleted!"
+                    visible={isModalVisible}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                >
+                    <h2>Are you sure?</h2>
+                </Modal>
+            </div>
+        </PageLayout>
 
-            <Modal
-                centered
-                transparent
-                title="User will be deleted!"
-                visible={isModalVisible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-            >
-                <h2>Are you sure?</h2>
-            </Modal>
-        </div>
     );
 };
 
