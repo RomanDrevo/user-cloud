@@ -2,7 +2,8 @@ import actionsTypes from '../actionsTypes';
 import createReducer from '../reducers/createReducer';
 
 const initialState = {
-  users: []
+  users: [],
+  searchText: ''
 };
 
 const usersReducer = createReducer(initialState, {
@@ -16,6 +17,12 @@ const usersReducer = createReducer(initialState, {
     return {
       ...state,
       users: state.users.filter(user => user.objectId !== payload)
+    };
+  },
+  [actionsTypes.UPDATE_SEARCH]: (state, { payload }) => {
+    return {
+      ...state,
+      searchText: payload
     };
   }
 });

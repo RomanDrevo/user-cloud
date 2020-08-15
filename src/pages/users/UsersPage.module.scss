@@ -15,6 +15,26 @@
     grid-area: header;
     display: flex;
     justify-content: space-between;
+    .user-search{
+      background: $black;
+      border: none;
+      border-radius: 20px;
+      .ant-input{
+        border-bottom: none!important;
+      }
+      .ant-input-suffix{
+        display: none;
+      }
+      .ant-input-prefix{
+        margin-right: 15px;
+        .anticon{
+          color: $white;
+        }
+        .ant-input-search-icon{
+          margin: 0;
+        }
+      }
+    }
   }
   .ant-alert{
     position: absolute;

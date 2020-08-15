@@ -34,3 +34,10 @@ export const createUser = data =>{
     payload: data
   };
 };
+
+export const updateSearch = data => {
+  return {
+    type: types.UPDATE_SEARCH,
+    payload: data
+  };
+};

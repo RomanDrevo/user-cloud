@@ -3,10 +3,13 @@ import {connect} from 'react-redux';
 import {logout} from '../../store/actions/authActions';
 import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
-import {deleteUser, fetchUsers} from '../../store/actions/usersActions';
+import {deleteUser, fetchUsers, updateSearch} from '../../store/actions/usersActions';
 import {
-    getIsModalVisible, getIsNotificationOpen, getNotificationMessage,
-    getUsers,
+    getIsModalVisible,
+    getIsNotificationOpen,
+    getNotificationMessage,
+    getSearchResult,
+    getSearchText,
     isLoading
 } from '../../store/selectors';
 import Spinner from '../../components/spinner';
@@ -16,6 +19,7 @@ import {Modal, Input} from 'antd';
 import {closeNotification, toggleDeleteUserModal} from '../../store/actions/uIStateActions';
 import {openNotification} from '../../utils/helpers';
 import {NOTIFICATIONS} from '../../utils/constatns';
+import {SearchOutlined} from '@ant-design/icons';
 
 const {Search} = Input;
 
@@ -23,14 +27,16 @@ const UsersPage = (
     {
         logout,
         fetchUsers,
-        users,
+        searchResult,
         isLoading,
         deleteUser,
         isNotificationOpen,
         isModalVisible,
         toggleDeleteUserModal,
         notificationMessage,
-        closeNotification
+        closeNotification,
+        updateSearch,
+        searchText
     }
 ) => {
 
@@ -64,6 +70,10 @@ const UsersPage = (
         }
     }, [isNotificationOpen]);
 
+    const handleOnSearchChange = e => {
+        updateSearch(e.target.value);
+    };
+
     return (
 
         <PageLayout handleLogout={handleLogout}>
@@ -71,18 +81,22 @@ const UsersPage = (
                 <div className='header'>
                     <div className='title'>Organization Users</div>
                     <Search
-                        placeholder="input search text"
-                        onSearch={value => console.log(value)}
-                        style={{width: 200}}
+                        placeholder="Search for a user"
+                        onChange={handleOnSearchChange}
+                        value={searchText}
+                        style={{width: 230}}
+                        className='user-search'
+                        prefix={<SearchOutlined />}
+                        suffix={''}
                     />
                 </div>
 
                 {
                     isLoading ? <Spinner/> :
-                        users.length ?
+                        searchResult.length ?
                             <div className='users-list'>
                                 {
-                                    users.map(user => (
+                                    searchResult.map(user => (
                                         <UserCard
                                             handleDeleteUser={handleDeleteUser}
                                             key={user.ID}
@@ -111,10 +125,11 @@ const UsersPage = (
 
 const mapStateToProps = state => {
     return {
-        users: getUsers(state),
         isLoading: isLoading(state),
         isModalVisible: getIsModalVisible(state),
         isNotificationOpen: getIsNotificationOpen(state),
+        searchText: getSearchText(state),
+        searchResult: getSearchResult(state),
         notificationMessage: getNotificationMessage(state),
     };
 };
@@ -125,6 +140,7 @@ function mapDispatchToProps(dispatch) {
         deleteUser: data => dispatch(deleteUser(data)),
         toggleDeleteUserModal: () => dispatch(toggleDeleteUserModal()),
         closeNotification: () => dispatch(closeNotification()),
+        updateSearch: data => dispatch(updateSearch(data)),
         fetchUsers: () => dispatch(fetchUsers())
     };
 }
