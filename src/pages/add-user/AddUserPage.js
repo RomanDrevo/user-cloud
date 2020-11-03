@@ -6,7 +6,7 @@ import Spinner from '../../components/spinner';
 import {Button, Form, Input} from 'antd';
 import FloatLabel from '../../components/floatLabel/FloatLabel';
 import {Formik} from 'formik';
-import {getIsNotificationOpen, getNotificationMessage, isLoading} from '../../store/selectors';
+import {getIsNotificationOpen, getNotificationMessage, getIsLoading} from '../../store/selectors';
 import {logout} from '../../store/actions/authActions';
 import {connect} from 'react-redux';
 import {createUser} from '../../store/actions/usersActions';
@@ -258,7 +258,7 @@ const AddUserPage = (
 
 const mapStateToProps = state => {
     return {
-        isLoading: isLoading(state),
+        isLoading: getIsLoading(state),
         isNotificationOpen: getIsNotificationOpen(state),
         notificationMessage: getNotificationMessage(state),
     };

@@ -1,9 +1,8 @@
 import types from '../actionsTypes';
 
-export const fetchUsers = data =>{
+export const fetchUsers = () =>{
   return{
-    type: types.FETCH_USERS,
-    payload: data
+    type: types.FETCH_USERS
   };
 };
 

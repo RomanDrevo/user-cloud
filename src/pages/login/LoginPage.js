@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import style from './Login.module.scss';
 import {Form, Input} from 'antd';
 import Spinner from '../../components/spinner';
-import {isAuthenticated, isLoading} from '../../store/selectors';
+import {isAuthenticated, getIsLoading} from '../../store/selectors';
 import {login, loginSuccess, setIsAuthenticated} from '../../store/actions/authActions';
 import {connect} from 'react-redux';
 import FloatLabel from '../../components/floatLabel/FloatLabel';
@@ -147,7 +147,7 @@ const LoginPage = ({isLoading, login, isAuthenticated, history, loginSuccess}) =
 
 const mapStateToProps = state => {
     return {
-        isLoading: isLoading(state),
+        isLoading: getIsLoading(state),
         isAuthenticated: isAuthenticated(state)
     };
 };

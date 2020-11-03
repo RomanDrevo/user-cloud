@@ -5,7 +5,7 @@ const initialState = {
     status: null,
     serverError: null,
     userEmail: null,
-    isAuthenticated: !!localStorage.getItem('token'),
+    isAuthenticated: true,
 };
 
 const authReducer = createReducer(initialState, {

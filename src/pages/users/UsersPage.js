@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector, connect} from 'react-redux';
 import {logout} from '../../store/actions/authActions';
 import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
@@ -10,7 +10,7 @@ import {
     getNotificationMessage,
     getSearchResult,
     getSearchText,
-    isLoading
+    getIsLoading
 } from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
@@ -23,45 +23,46 @@ import {SearchOutlined} from '@ant-design/icons';
 
 const {Search} = Input;
 
-const UsersPage = (
-    {
-        logout,
-        fetchUsers,
-        searchResult,
-        isLoading,
-        deleteUser,
-        isNotificationOpen,
-        isModalVisible,
-        toggleDeleteUserModal,
-        notificationMessage,
-        closeNotification,
-        updateSearch,
-        searchText
-    }
-) => {
+const UsersPage = () => {
+
+    const isLoading = useSelector(state => getIsLoading(state));
+    const searchResult = useSelector(state => getSearchResult(state));
+    const isNotificationOpen = useSelector(state => getIsNotificationOpen(state));
+    const isModalVisible = useSelector(state => getIsModalVisible(state));
+    const searchText = useSelector(state => getSearchText(state));
+    const notificationMessage = useSelector(state => getNotificationMessage(state));
+
+    const dispatch = useDispatch();
+
+    const fetchUsersMethod = () => dispatch(fetchUsers());
+    const closeNotificationMethod = () => dispatch(closeNotification());
+    const toggleDeleteUserModalMethod = () => dispatch(toggleDeleteUserModal());
+    const logoutMethod = () => dispatch(logout());
+    const deleteUserMethod = id => dispatch(deleteUser(id));
+    const updateSearchMethod = text => dispatch(updateSearch(text));
 
     useEffect(() => {
-        fetchUsers();
-        closeNotification();
+        fetchUsersMethod();
+        closeNotificationMethod();
     }, []);
 
     const handleLogout = () => {
-        logout();
+        logoutMethod();
     };
 
     const [user, setUser] = useState('');
 
     const handleDeleteUser = user => {
-        toggleDeleteUserModal();
+        toggleDeleteUserModalMethod();
         setUser(user);
     };
 
     const handleOk = () => {
-        deleteUser(user.objectId);
+        deleteUserMethod(user.objectId);
     };
 
     const handleCancel = () => {
-        toggleDeleteUserModal();
+        toggleDeleteUserModalMethod();
     };
 
     useEffect(() => {
@@ -71,7 +72,7 @@ const UsersPage = (
     }, [isNotificationOpen]);
 
     const handleOnSearchChange = e => {
-        updateSearch(e.target.value);
+        updateSearchMethod(e.target.value);
     };
 
     return (
@@ -123,26 +124,4 @@ const UsersPage = (
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        isLoading: isLoading(state),
-        isModalVisible: getIsModalVisible(state),
-        isNotificationOpen: getIsNotificationOpen(state),
-        searchText: getSearchText(state),
-        searchResult: getSearchResult(state),
-        notificationMessage: getNotificationMessage(state),
-    };
-};
-
-function mapDispatchToProps(dispatch) {
-    return {
-        logout: () => dispatch(logout()),
-        deleteUser: data => dispatch(deleteUser(data)),
-        toggleDeleteUserModal: () => dispatch(toggleDeleteUserModal()),
-        closeNotification: () => dispatch(closeNotification()),
-        updateSearch: data => dispatch(updateSearch(data)),
-        fetchUsers: () => dispatch(fetchUsers())
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
+export default UsersPage;
