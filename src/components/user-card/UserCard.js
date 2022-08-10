@@ -25,7 +25,7 @@ const UserCard = ({user, handleDeleteUser}) => {
                     <img alt='userpic' src={user.Photo}/>
                 </div>
                 <Divider className='divider'/>
-                <div className='user-name'>{user.FirstName}</div>
+                <div className='user-name'>{user.name}</div>
                 <div className='user-role'>Role</div>
                 <Divider className='divider'/>
                 <div className='cut-2'/>
@@ -42,7 +42,7 @@ const UserCard = ({user, handleDeleteUser}) => {
                 <div className='user-email-wrapper'>
                     <div className='flex'>
                         <MailOutlined/>
-                        <a href={`mailto:${user.Email}`} className='user-email'>{user.Email}</a>
+                        <a href={`mailto:${user.email}`} className='user-email'>{user.Email}</a>
                     </div>
                     <button className='delete-user' onClick={() => handleOnClick(user)}>
                         <DeleteOutlined/>
