@@ -21,7 +21,7 @@ const App = ({isErrorWindowOpen, errorObject, toggleErrorWindowIsOpen}) => {
         <div className={style['app-wrapper']}>
             <ModalWindow
                 visible={isErrorWindowOpen}
-                title={capitalizeFirstLetter(errorObject.title)}
+                title={'error'}
                 message={errorObject.message}
                 handleErrorModalCancel={handleErrorModalCancel}
             />

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = process.env.REACT_APP_API_URL || '';
+const baseUrl = process.env.REACT_APP_API_URL || 'https://jsonplaceholder.typicode.com';
 const loginUrl = process.env.REACT_APP_LOGIN_URL || '';
 
 axios.interceptors.request.use(function (config) {
@@ -20,7 +20,7 @@ export const loginApi = () => {
 };
 
 export const fetchUsersApi = () => {
-    return axios.get('/cyberhat_users');
+    return axios.get('/users');
 };
 
 export const deleteUserApi = data => {

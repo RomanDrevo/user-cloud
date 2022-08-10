@@ -43,6 +43,8 @@ export function* fetchUsersSaga() {
         yield put(setLoading(true));
         const response = yield call(fetchUsersApi);
 
+        console.log(response);
+
         if (response.status === 200 && response.data) {
             yield put(setUsersToStore(response.data));
         }

@@ -26,16 +26,16 @@ const UserCard = ({user, handleDeleteUser}) => {
                 </div>
                 <Divider className='divider'/>
                 <div className='user-name'>{user.FirstName}</div>
-                <div className='user-role'>{capitalizeFirstLetter(user.Role)}</div>
+                <div className='user-role'>Role</div>
                 <Divider className='divider'/>
                 <div className='cut-2'/>
                 <div className='user-details'>
-                    <div className='user-id'>ID: {user.ID}</div>
+                    <div className='user-id'>ID: {user.id}</div>
                     <div className='user-birthday'>
-                        Birthday: {day}/{month}/{year}
+                        Email: {user.email}
                     </div>
                     <div className='user-address'>
-                        Address: {user.Address}
+                        Address: {user.address.street}
                     </div>
                 </div>
                 <Divider className='divider'/>
