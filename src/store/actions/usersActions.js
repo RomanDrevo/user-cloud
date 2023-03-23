@@ -1,6 +1,7 @@
 import types from '../actionsTypes';
 
 export const fetchUsers = () =>{
+  console.log('--->>>here');
   return{
     type: types.FETCH_USERS
   };
@@ -28,6 +29,7 @@ export const deleteUserSuccess = data =>{
 };
 
 export const createUser = data =>{
+  console.log('--->>>data: ', data);
   return{
     type: types.CREATE_USER,
     payload: data

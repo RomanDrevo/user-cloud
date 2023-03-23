@@ -13,6 +13,12 @@ const usersReducer = createReducer(initialState, {
       users: payload
     };
   },
+  [actionsTypes.CREATE_USER]: (state, {payload}) => {
+    return {
+      ...state,
+      users: [...state.users, payload]
+    };
+  },
   [actionsTypes.DELETE_USER_SUCCESS]: (state, {payload}) => {
     return {
       ...state,

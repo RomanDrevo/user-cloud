@@ -41,12 +41,20 @@ export function* loginSaga(data) {
 export function* fetchUsersSaga() {
     try {
         yield put(setLoading(true));
-        const response = yield call(fetchUsersApi);
 
-        console.log(response);
+        const users = JSON.parse(localStorage.getItem('users'));
 
-        if (response.status === 200 && response.data) {
-            yield put(setUsersToStore(response.data));
+        if(users?.length){
+            yield put(setUsersToStore(users));
+        }else {
+            const response = yield call(fetchUsersApi);
+
+            // console.log('--->>>response: ', response);
+
+            if (response.status === 200 && response.data) {
+                localStorage.setItem('users', JSON. stringify(response.data));
+                yield put(setUsersToStore(response.data));
+            }
         }
 
         yield put(setLoading(false));
@@ -88,16 +96,18 @@ export function* deleteUserSaga(data) {
 }
 
 export function* createUserSaga(data) {
+    console.log('--->>>data: ', data);
     try {
         yield put(setLoading(true));
         const newUser = data.payload;
         newUser.id = Math.floor(Math.random() * (100000 - 1 + 1)) + 1;
-        newUser.BirthDate = new Date(newUser.birthDate).getTime();
-        delete newUser.birthDate;
-        const response = yield call(createUserApi, data);
-        if (response.status === 200 && response.data) {
-            yield put(openNotification(NOTIFICATIONS.add));
-        }
+
+        const users = JSON.parse(localStorage.getItem('users'));
+
+        users.push(newUser);
+
+        localStorage.setItem('users', JSON. stringify(users));
+
         yield put(setLoading(false));
     } catch (error) {
         yield put(setLoading(false));

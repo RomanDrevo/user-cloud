@@ -12,27 +12,28 @@ import {toggleErrorWindowIsOpen} from './store/actions/uIStateActions';
 import AddUserPage from './pages/add-user/AddUserPage';
 
 const App = ({isErrorWindowOpen, errorObject, toggleErrorWindowIsOpen}) => {
-
+    console.log('--->>>here');
     const handleErrorModalCancel = () => {
         toggleErrorWindowIsOpen();
     };
 
     return (
-        <div className={style['app-wrapper']}>
-            <ModalWindow
-                visible={isErrorWindowOpen}
-                title={'error'}
-                message={errorObject.message}
-                handleErrorModalCancel={handleErrorModalCancel}
-            />
-            <div className="main-page-content">
-                <Switch>
-                    <ProtectedRoute path='/' exact component={UsersPage}/>
-                    <ProtectedRoute path='/add-user' exact component={AddUserPage}/>
-                    <Route path='/login' exact component={LoginPage}/>
-                </Switch>
-            </div>
+
+      <div className={style['app-wrapper']}>
+        {/* <ModalWindow*/}
+        {/*        visible={isErrorWindowOpen}*/}
+        {/*        title={'error'}*/}
+        {/*        message={'massage'}*/}
+        {/*        handleErrorModalCancel={handleErrorModalCancel}*/}
+        {/*    />*/}
+        <div className="main-page-content">
+          <Switch>
+            <ProtectedRoute path='/' exact component={UsersPage}/>
+            <ProtectedRoute path='/add-user' exact component={AddUserPage}/>
+            <Route path='/login' exact component={LoginPage}/>
+          </Switch>
         </div>
+      </div>
     );
 };
 

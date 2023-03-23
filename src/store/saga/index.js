@@ -1,6 +1,6 @@
 import {takeEvery} from 'redux-saga/effects';
 import types from '../actionsTypes';
-import {createUserSaga, deleteUserSaga, fetchUsersSaga, loginSaga} from './sagas';
+import {deleteUserSaga, fetchUsersSaga, loginSaga, createUserSaga} from './sagas';
 
 export function* watchSaga() {
   yield takeEvery(types.LOGIN, loginSaga);

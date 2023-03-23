@@ -20,6 +20,7 @@ export const loginApi = () => {
 };
 
 export const fetchUsersApi = () => {
+    console.log('--->>>fetchUsersApi');
     return axios.get('/users');
 };
 
