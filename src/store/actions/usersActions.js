@@ -1,10 +1,36 @@
 import types from '../actionsTypes';
+import {setLoading, toggleErrorWindowIsOpen} from './uIStateActions';
+import {fetchUsersApi} from '../../api';
+import {setAlert} from './alertActions';
 
-export const fetchUsers = () =>{
-  console.log('--->>>here');
-  return{
-    type: types.FETCH_USERS
-  };
+export const fetchUsers =  () => async (dispatch) => {
+  try {
+   dispatch(setLoading(true));
+   const users = JSON.parse(localStorage.getItem('users'));
+
+   if(users?.length){
+      dispatch(setUsersToStore(users));
+   }else {
+       const response = await fetchUsersApi();
+
+       if (response.status === 200 && response.data) {
+        localStorage.setItem('users', JSON. stringify(response.data));
+        dispatch(setUsersToStore(response.data));
+       }
+   }
+
+   dispatch(setLoading(false));
+  }catch (error){
+    dispatch(setLoading(false));
+    dispatch(
+        setAlert({
+          status: 'error',
+          title: 'Error',
+          message: error.message
+        })
+    );
+    dispatch(toggleErrorWindowIsOpen());
+  }
 };
 
 export const setUsersToStore = data =>{
