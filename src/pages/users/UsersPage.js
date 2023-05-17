@@ -38,6 +38,10 @@ const UsersPage = () => {
     const fetchUsersMethod = () => dispatch(fetchUsers());
 
     useEffect(() => {
+        if(history.location.state?.from === '/add-user'){
+            console.log('---here!!!!!!');
+            return null;
+        }
         fetchUsersMethod();
     }, []);
 

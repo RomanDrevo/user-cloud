@@ -3,7 +3,7 @@ import createReducer from '../reducers/createReducer';
 
 const initialState = {
   users: [],
-  searchText: ''
+  searchText: '',
 };
 
 const usersReducer = createReducer(initialState, {
@@ -14,6 +14,7 @@ const usersReducer = createReducer(initialState, {
     };
   },
   [actionsTypes.CREATE_USER]: (state, {payload}) => {
+    console.log('--->>>payload: ', payload);
     return {
       ...state,
       users: [...state.users, payload]

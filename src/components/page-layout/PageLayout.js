@@ -21,7 +21,7 @@ const PageLayout = ({children, handleLogout}) => {
     return (
       <Layout className={style['page-layout-wrapper']} style={{minHeight: '100vh'}}>
         <Header className="site-layout-background" style={{padding: 0}}>
-          <Logo/>
+          {/* <Logo/>*/}
         </Header>
         <Layout className="site-layout">
           <Sider width={150} collapsible collapsed={collapsed} onCollapse={onCollapse}>
