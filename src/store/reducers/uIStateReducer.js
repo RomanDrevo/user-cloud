@@ -6,7 +6,8 @@ const initialState = {
     isErrorWindowOpen: false,
     isModalVisible: false,
     isNotificationOpen: false,
-    notificationMessage: ''
+    notificationMessage: '',
+    isAppStarted: false
 };
 
 const UIStateReducer = createReducer(initialState, {
@@ -40,6 +41,12 @@ const UIStateReducer = createReducer(initialState, {
         return {
             ...state,
             isErrorWindowOpen: !state.isErrorWindowOpen
+        };
+    },
+    [actionsTypes.TOGGLE_IS_APP_STARTED]: state => {
+        return {
+            ...state,
+            isAppStarted: true
         };
     },
 });

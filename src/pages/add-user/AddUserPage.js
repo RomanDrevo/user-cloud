@@ -8,25 +8,22 @@ import FloatLabel from '../../components/floatLabel/FloatLabel';
 import {Formik} from 'formik';
 import {getIsNotificationOpen, getNotificationMessage, getIsLoading} from '../../store/selectors';
 import {logout} from '../../store/actions/authActions';
-import {connect} from 'react-redux';
 import {createUser} from '../../store/actions/usersActions';
 import {openNotification} from '../../utils/helpers';
 import {NOTIFICATIONS} from '../../utils/constatns';
 import {closeNotification} from '../../store/actions/uIStateActions';
 import {useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
-const AddUserPage = (
-    {
-        isLoading,
-        createUser,
-        logout,
-        isNotificationOpen,
-        notificationMessage,
-        closeNotification,
-        ...props
-    }) => {
+const AddUserPage = () => {
 
-    console.log(props);
+    const dispatch = useDispatch();
+    const closeNotificationMethod =()=> dispatch(closeNotification());
+    const createUserMethod =(action)=> dispatch(createUser(action));
+
+    const isNotificationOpen = useSelector(getIsNotificationOpen);
+    const notificationMessage = useSelector(getNotificationMessage);
+    const isLoading = useSelector(getIsLoading);
 
     const history = useHistory();
     const initialState = {
@@ -50,7 +47,7 @@ const AddUserPage = (
     }, [isNotificationOpen, notificationMessage]);
 
     useEffect(() => {
-        closeNotification();
+        closeNotificationMethod();
     }, []);
 
     const handleOnChange = e => {
@@ -59,7 +56,7 @@ const AddUserPage = (
     };
 
     const handleOnClick = () => {
-        createUser({name, email, role, address});
+        createUserMethod({name, email, role, address});
         history.push('/', {from: '/add-user'});
     };
 
@@ -190,20 +187,4 @@ const AddUserPage = (
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        isLoading: getIsLoading(state),
-        isNotificationOpen: getIsNotificationOpen(state),
-        notificationMessage: getNotificationMessage(state),
-    };
-};
-
-function mapDispatchToProps(dispatch) {
-    return {
-        createUser: data => dispatch(createUser(data)),
-        logout: () => dispatch(logout()),
-        closeNotification: () => dispatch(closeNotification()),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddUserPage);
+export default AddUserPage;

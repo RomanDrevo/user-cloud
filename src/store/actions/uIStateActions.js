@@ -13,6 +13,12 @@ export const toggleDeleteUserModal = () =>{
     };
 };
 
+export const toggleIsAppStarted = () =>{
+    return{
+        type: types.TOGGLE_IS_APP_STARTED
+    };
+};
+
 export const openNotification = data =>{
     return{
         type: types.OPEN_NOTIFICATION,

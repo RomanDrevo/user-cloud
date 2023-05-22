@@ -10,13 +10,14 @@ import {
     getNotificationMessage,
     getSearchResult,
     getSearchText,
-    getIsLoading, getUsers
+    getIsLoading, getUsers, getIsAppStarted
 } from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
 import {useGetUsersQuery} from '../../store/apiSlice';
 import {useHistory} from 'react-router-dom';
+import {toggleIsAppStarted} from '../../store/actions/uIStateActions';
 
 const UsersPage = () => {
     const history = useHistory();
@@ -30,19 +31,26 @@ const UsersPage = () => {
     // console.log('--->>>isError: ', isError);
     // console.log('--->>>error: ', error);
 
-    const isLoading = useSelector(state => getIsLoading(state));
-    const users = useSelector(state => getUsers(state));
+    const isLoading = useSelector(getIsLoading);
+    const users = useSelector(getUsers);
+    const isAppStarted = useSelector(getIsAppStarted);
     console.log('--->>>users: ', users);
     const dispatch = useDispatch();
     //
     const fetchUsersMethod = () => dispatch(fetchUsers());
+    const toggleIsAppStartedMethod = () => dispatch(toggleIsAppStarted());
 
     useEffect(() => {
-        if(history.location.state?.from === '/add-user'){
-            console.log('---here!!!!!!');
-            return null;
+        toggleIsAppStartedMethod();
+        // if(history.location.state?.from === '/add-user'){
+        //     console.log('---here!!!!!!');
+        //     return null;
+        // }
+        if(!isAppStarted){
+            console.log('--->>>fetchUsersMethod!!!');
+            fetchUsersMethod();
         }
-        fetchUsersMethod();
+
     }, []);
 
     // const [user, setUser] = useState('');
@@ -72,7 +80,7 @@ const UsersPage = () => {
                           users.map(user => (
                             <UserCard
                                 // handleDeleteUser={handleDeleteUser}
-                                key={user.ID}
+                                key={user.id}
                                 user={user}
                             />
                           ))

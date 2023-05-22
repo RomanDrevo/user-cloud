@@ -5,6 +5,7 @@ export const getIsModalVisible = state => state.uIStateReducer?.isModalVisible;
 export const getIsNotificationOpen = state => state.uIStateReducer?.isNotificationOpen;
 export const getIsErrorWindowOpen = state => state?.uIStateReducer?.isErrorWindowOpen;
 export const getNotificationMessage = state => state?.uIStateReducer?.notificationMessage;
+export const getIsAppStarted = state => state?.uIStateReducer?.isAppStarted;
 
 export const isAuthenticated = state => state.authReducer?.isAuthenticated;
 

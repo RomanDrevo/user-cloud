@@ -3,21 +3,26 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-// import createSagaMiddleware from 'redux-saga';
 import {applyMiddleware, compose, createStore} from 'redux';
 import reducers from './store/reducers';
-import {watchSaga} from './store/saga';
 import 'antd/dist/antd.css';
 import './css/index.scss';
 import thunk from 'redux-thunk';
+import {configureStore} from '@reduxjs/toolkit';
+import uIStateReducer from './store/reducers/uIStateReducer';
+import authReducer from './store/reducers/authReducer';
+import usersReducer from './store/reducers/usersReducer';
+import alertReducer from './store/reducers/alertReducer';
 
-const
-    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose,
-    // sagaMiddleware = createSagaMiddleware(),
-    // middlewares = [sagaMiddleware],
-    store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
-
-// sagaMiddleware.run(watchSaga);
+const store = configureStore({
+        reducer:{
+            uIStateReducer,
+            authReducer,
+            usersReducer,
+            alertReducer
+        },
+        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
+    });
 
 ReactDOM.render(
   <Provider store={store}>
