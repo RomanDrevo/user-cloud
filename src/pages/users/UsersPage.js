@@ -1,27 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch, useSelector, connect} from 'react-redux';
-// import {logout} from '../../store/actions/authActions';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector, } from 'react-redux';
 import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
 import {fetchUsers} from '../../store/actions/usersActions';
-import {
-    getIsModalVisible,
-    getIsNotificationOpen,
-    getNotificationMessage,
-    getSearchResult,
-    getSearchText,
-    getIsLoading, getUsers, getIsAppStarted
-} from '../../store/selectors';
+import {getIsLoading, getUsers, getIsAppStarted} from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
-import {useGetUsersQuery} from '../../store/apiSlice';
-import {useHistory} from 'react-router-dom';
 import {toggleIsAppStarted} from '../../store/actions/uIStateActions';
 
 const UsersPage = () => {
-    const history = useHistory();
-    console.log('--->>>history: ',  history);
 
     // const {data, isLoading, isSuccess, isError, error} = useGetUsersQuery();
 
@@ -36,25 +24,18 @@ const UsersPage = () => {
     const isAppStarted = useSelector(getIsAppStarted);
     console.log('--->>>users: ', users);
     const dispatch = useDispatch();
-    //
+
     const fetchUsersMethod = () => dispatch(fetchUsers());
     const toggleIsAppStartedMethod = () => dispatch(toggleIsAppStarted());
 
     useEffect(() => {
         toggleIsAppStartedMethod();
-        // if(history.location.state?.from === '/add-user'){
-        //     console.log('---here!!!!!!');
-        //     return null;
-        // }
         if(!isAppStarted){
             console.log('--->>>fetchUsersMethod!!!');
             fetchUsersMethod();
         }
 
     }, []);
-
-    // const [user, setUser] = useState('');
-    //
 
     return (
       <PageLayout>
