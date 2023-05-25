@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import style from './PageLayout.module.scss';
 import {Layout, Menu} from 'antd';
-import {UserAddOutlined, UserOutlined, LogoutOutlined,} from '@ant-design/icons';
+import {UserAddOutlined, UserOutlined,} from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
 const {Header, Content, Sider} = Layout;
@@ -11,10 +11,6 @@ const PageLayout = ({children, handleLogout}) => {
 
     const onCollapse = collapsed => {
         setCollapsed(collapsed);
-    };
-
-    const handleOnclick = () => {
-        handleLogout();
     };
 
     return (

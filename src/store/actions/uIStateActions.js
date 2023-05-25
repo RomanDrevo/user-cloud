@@ -13,10 +13,3 @@ export const toggleIsAppStarted = () =>{
     };
 };
 
-export const setErrorToStore = data =>{
-    return{
-        type: types.SET_ERROR_TO_STORE,
-        payload: data
-    };
-};
-

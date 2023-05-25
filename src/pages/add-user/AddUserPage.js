@@ -7,7 +7,6 @@ import {Button, Form, Input} from 'antd';
 import FloatLabel from '../../components/floatLabel/FloatLabel';
 import {Formik} from 'formik';
 import {getIsLoading} from '../../store/selectors';
-import {closeNotification} from '../../store/actions/uIStateActions';
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {usersActions} from '../../store/usersSlice';
@@ -15,7 +14,6 @@ import {usersActions} from '../../store/usersSlice';
 const AddUserPage = () => {
 
     const dispatch = useDispatch();
-    const closeNotificationMethod =()=> dispatch(closeNotification());
     const createUserMethod =(action)=> dispatch(usersActions.createUser(action));
 
     const isLoading = useSelector(getIsLoading);
@@ -29,10 +27,6 @@ const AddUserPage = () => {
     };
 
     const [{name, email, role, address}, setState] = useState(initialState);
-
-    useEffect(() => {
-        closeNotificationMethod();
-    }, []);
 
     const handleOnChange = e => {
         const {name, value} = e.target;
