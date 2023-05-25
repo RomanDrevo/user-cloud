@@ -16,9 +16,6 @@ const UserCard = ({user, handleDeleteUser}) => {
       <div className={style['user-card-wrapper']}>
         <div className='user-card'>
           <div className='cut-1'/>
-          {/* <div className='userpic-wrapper'>*/}
-          {/*    <img alt='userpic' src='./79.jpeg' />*/}
-          {/* </div>*/}
           <Divider className='divider'/>
           <div className='user-name'>{user.name}</div>
           <div className='user-role'>Role</div>

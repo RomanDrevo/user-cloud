@@ -45,7 +45,6 @@ const UsersPage = () => {
                       {
                           users.map(user => (
                             <UserCard
-                                // handleDeleteUser={handleDeleteUser}
                                 key={user.id}
                                 user={user}
                             />
