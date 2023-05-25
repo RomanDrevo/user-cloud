@@ -10,5 +10,5 @@ export const getSearchResult = createSelector(getUsers, getSearchText, (users, t
 
 });
 
-export const getErrorObject = state => state?.alertReducer;
+export const getErrorObject = state => state?.usersReducer;
 
