@@ -10,6 +10,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import uIStateReducer from './store/reducers/uIStateReducer';
 import {usersReducer} from './store/usersSlice';
 import {usersApi} from './store/usersApi';
+import {setupListeners} from '@reduxjs/toolkit/query';
 
 const store = configureStore({
         reducer:{
@@ -17,8 +18,10 @@ const store = configureStore({
             uIStateReducer,
             usersReducer,
         },
-        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
+        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(usersApi.middleware)
     });
+
+setupListeners(store.dispatch);
 
 ReactDOM.render(
   <Provider store={store}>
