@@ -5,20 +5,26 @@ import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUserDetails} from '../../store/actions/userdetailsActions';
 import {getUserDetails} from '../../store/selectors';
+import {fetchUserDetailsApi} from '../../api';
 
 const UserCard = ({user}) => {
 
-  const userDetails = useSelector(getUserDetails);
+  // const userDetails = useSelector((state)=>getUserDetails(state, user.id));
   // const selectedId = useSelector(getSelectedId);
 
   // console.log('--->>>userDetails: ', userDetails);
 
-  const dispatch = useDispatch();
+  const [userDetails, setUserDetails] = useState({});
 
-  const fetchUserDetailsMethod = () => dispatch(fetchUserDetails(user.id));
+  // const dispatch = useDispatch();
 
-    const handleOnClick = () => {
-      fetchUserDetailsMethod();
+  // const fetchUserDetailsMethod = () => dispatch(fetchUserDetails(user.id));
+
+    const handleOnClick = async () => {
+      // fetchUserDetailsMethod();
+      const userData = await fetchUserDetailsApi(user.id);
+      console.log('--->>>userData: ', userData);
+      setUserDetails(userData.data);
     };
 
     return (
@@ -38,9 +44,14 @@ const UserCard = ({user}) => {
                 Email: {userDetails.email}
               </div>
             }
-            {/* <div className='user-address'>*/}
-            {/*  Address: {user.address.street}*/}
-            {/* </div>*/}
+
+            {
+                user.id === userDetails.id && userDetails?.address &&
+                <div className='user-address'>
+                  Address: {userDetails.address.street}
+                </div>
+            }
+
           </div>
 
           <Divider className='divider'/>
