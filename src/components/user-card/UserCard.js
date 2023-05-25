@@ -5,26 +5,26 @@ import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUserDetails} from '../../store/actions/userdetailsActions';
 import {getUserDetails} from '../../store/selectors';
-import {fetchUserDetailsApi} from '../../api';
 
 const UserCard = ({user}) => {
+  console.log('--->>>user: ', user);
 
-  // const userDetails = useSelector((state)=>getUserDetails(state, user.id));
+  const userDetails = useSelector((state)=>getUserDetails(state, user.id));
   // const selectedId = useSelector(getSelectedId);
 
   // console.log('--->>>userDetails: ', userDetails);
 
-  const [userDetails, setUserDetails] = useState({});
+  // const [userDetails, setUserDetails] = useState({});
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const fetchUserDetailsMethod = () => dispatch(fetchUserDetails(user.id));
+  const fetchUserDetailsMethod = () => dispatch(fetchUserDetails(user.id));
 
-    const handleOnClick = async () => {
-      // fetchUserDetailsMethod();
-      const userData = await fetchUserDetailsApi(user.id);
-      console.log('--->>>userData: ', userData);
-      setUserDetails(userData.data);
+    const handleOnClick = () => {
+      fetchUserDetailsMethod();
+      // const userData = await fetchUserDetailsApi(user.id);
+      // console.log('--->>>userData: ', userData);
+      // setUserDetails(userData.data);
     };
 
     return (
@@ -37,18 +37,18 @@ const UserCard = ({user}) => {
           <Divider className='divider'/>
           <div className='cut-2'/>
           <div className='user-details'>
-            <div className='user-id'>ID: {user.id}</div>
+            <div className='user-id'>ID: {user?.id}</div>
             {
-              user.id === userDetails.id && userDetails?.email &&
+              user.id === userDetails?.id && userDetails?.email &&
               <div className='user-birthday'>
-                Email: {userDetails.email}
+                Email: {userDetails?.email}
               </div>
             }
 
             {
-                user.id === userDetails.id && userDetails?.address &&
+                user.id === userDetails?.id && userDetails?.address &&
                 <div className='user-address'>
-                  Address: {userDetails.address.street}
+                  Address: {userDetails?.address.street}
                 </div>
             }
 

@@ -2,7 +2,7 @@ import actionsTypes from '../actionsTypes';
 import createReducer from '../reducers/createReducer';
 
 const initialState = {
-    userDetails: [],
+    selectedUsers: [],
     error: null,
     isSuccess: null,
     selectedId: null
@@ -13,7 +13,7 @@ const userDetailsReducer = createReducer(initialState, {
     [actionsTypes.SET_USER_DETAILS_TO_STORE]: (state, {payload}) => {
         return {
             ...state,
-            userDetails: payload
+            selectedUsers: [...state.selectedUsers, payload]
         };
     },
     // [actionsTypes.SET_LOADING]: (state, {payload}) => {
