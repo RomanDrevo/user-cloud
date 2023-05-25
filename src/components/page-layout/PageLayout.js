@@ -7,15 +7,11 @@ import {Link} from 'react-router-dom';
 
 const {Header, Content, Sider} = Layout;
 
-const PageLayout = ({children, handleLogout}) => {
+const PageLayout = ({children}) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const onCollapse = collapsed => {
         setCollapsed(collapsed);
-    };
-
-    const handleOnclick = () => {
-        handleLogout();
     };
 
     return (
@@ -35,10 +31,6 @@ const PageLayout = ({children, handleLogout}) => {
                 <Link to='/add-user'>
                   Add User
                 </Link>
-              </Menu.Item>
-
-              <Menu.Item key="9" icon={<LogoutOutlined/>} onClick={handleOnclick}>
-                Logout
               </Menu.Item>
             </Menu>
           </Sider>

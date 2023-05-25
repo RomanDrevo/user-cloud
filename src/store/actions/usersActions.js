@@ -1,7 +1,6 @@
 import types from '../actionsTypes';
-import {setLoading, toggleErrorWindowIsOpen} from './uIStateActions';
+import {setLoading} from './uIStateActions';
 import {fetchUsersApi} from '../../api';
-import {setAlert} from './alertActions';
 
 export const fetchUsers =  () => async (dispatch) => {
   try {
@@ -22,14 +21,7 @@ export const fetchUsers =  () => async (dispatch) => {
    dispatch(setLoading(false));
   }catch (error){
     dispatch(setLoading(false));
-    dispatch(
-        setAlert({
-          status: 'error',
-          title: 'Error',
-          message: error.message
-        })
-    );
-    dispatch(toggleErrorWindowIsOpen());
+    dispatch(setErrorToStore(error));
   }
 };
 
@@ -40,9 +32,9 @@ export const setUsersToStore = data =>{
   };
 };
 
-export const deleteUser = data =>{
+export const setErrorToStore = data =>{
   return{
-    type: types.DELETE_USER,
+    type: types.SET_ERROR_TO_STORE,
     payload: data
   };
 };

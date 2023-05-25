@@ -3,7 +3,7 @@ import createReducer from '../reducers/createReducer';
 
 const initialState = {
   users: [],
-  searchText: '',
+  error: null
 };
 
 const usersReducer = createReducer(initialState, {
@@ -20,10 +20,10 @@ const usersReducer = createReducer(initialState, {
       users: [...state.users, payload]
     };
   },
-  [actionsTypes.DELETE_USER_SUCCESS]: (state, {payload}) => {
+  [actionsTypes.SET_ERROR_TO_STORE]: (state, {payload}) => {
     return {
       ...state,
-      users: state.users.filter(user => user.objectId !== payload)
+      error: payload
     };
   },
   [actionsTypes.UPDATE_SEARCH]: (state, { payload }) => {
