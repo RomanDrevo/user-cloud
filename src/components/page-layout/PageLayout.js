@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import style from './PageLayout.module.scss';
 import {Layout, Menu} from 'antd';
 import {UserAddOutlined, UserOutlined, LogoutOutlined,} from '@ant-design/icons';
-import Logo from '../logo/Logo';
 import {Link} from 'react-router-dom';
 
 const {Header, Content, Sider} = Layout;
@@ -35,10 +34,6 @@ const PageLayout = ({children, handleLogout}) => {
                 <Link to='/add-user'>
                   Add User
                 </Link>
-              </Menu.Item>
-
-              <Menu.Item key="9" icon={<LogoutOutlined/>} onClick={handleOnclick}>
-                Logout
               </Menu.Item>
             </Menu>
           </Sider>

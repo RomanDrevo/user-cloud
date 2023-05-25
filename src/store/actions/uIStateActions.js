@@ -7,22 +7,9 @@ export const setLoading = data =>{
     };
 };
 
-export const toggleDeleteUserModal = () =>{
-    return{
-        type: types.TOGGLE_DELETE_USER_MODAL
-    };
-};
-
 export const toggleIsAppStarted = () =>{
     return{
         type: types.TOGGLE_IS_APP_STARTED
-    };
-};
-
-export const openNotification = data =>{
-    return{
-        type: types.OPEN_NOTIFICATION,
-        payload: data
     };
 };
 

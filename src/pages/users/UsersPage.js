@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector, } from 'react-redux';
 import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
-import {fetchUsers} from '../../store/actions/usersActions';
+// import {fetchUsers} from '../../store/actions/usersActions';
 import {getIsLoading, getUsers, getIsAppStarted} from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
 import {toggleIsAppStarted} from '../../store/actions/uIStateActions';
+import {fetchUsers} from '../../store/usersSlice';
 
 const UsersPage = () => {
 
@@ -31,7 +32,6 @@ const UsersPage = () => {
     useEffect(() => {
         toggleIsAppStartedMethod();
         if(!isAppStarted){
-            console.log('--->>>fetchUsersMethod!!!');
             fetchUsersMethod();
         }
 

@@ -8,16 +8,12 @@ import './css/index.scss';
 import thunk from 'redux-thunk';
 import {configureStore} from '@reduxjs/toolkit';
 import uIStateReducer from './store/reducers/uIStateReducer';
-import authReducer from './store/reducers/authReducer';
-import usersReducer from './store/reducers/usersReducer';
-import alertReducer from './store/reducers/alertReducer';
+import {usersReducer} from './store/usersSlice';
 
 const store = configureStore({
         reducer:{
             uIStateReducer,
-            authReducer,
             usersReducer,
-            alertReducer
         },
         middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
     });

@@ -6,23 +6,18 @@ import Spinner from '../../components/spinner';
 import {Button, Form, Input} from 'antd';
 import FloatLabel from '../../components/floatLabel/FloatLabel';
 import {Formik} from 'formik';
-import {getIsNotificationOpen, getNotificationMessage, getIsLoading} from '../../store/selectors';
-import {logout} from '../../store/actions/authActions';
-import {createUser} from '../../store/actions/usersActions';
-import {openNotification} from '../../utils/helpers';
-import {NOTIFICATIONS} from '../../utils/constatns';
+import {getIsLoading} from '../../store/selectors';
 import {closeNotification} from '../../store/actions/uIStateActions';
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {usersActions} from '../../store/usersSlice';
 
 const AddUserPage = () => {
 
     const dispatch = useDispatch();
     const closeNotificationMethod =()=> dispatch(closeNotification());
-    const createUserMethod =(action)=> dispatch(createUser(action));
+    const createUserMethod =(action)=> dispatch(usersActions.createUser(action));
 
-    const isNotificationOpen = useSelector(getIsNotificationOpen);
-    const notificationMessage = useSelector(getNotificationMessage);
     const isLoading = useSelector(getIsLoading);
 
     const history = useHistory();
@@ -34,17 +29,6 @@ const AddUserPage = () => {
     };
 
     const [{name, email, role, address}, setState] = useState(initialState);
-
-    const clearState = () => {
-        setState({ ...initialState });
-    };
-
-    useEffect(() => {
-        if (isNotificationOpen && notificationMessage === NOTIFICATIONS.add) {
-            openNotification(notificationMessage);
-            clearState();
-        }
-    }, [isNotificationOpen, notificationMessage]);
 
     useEffect(() => {
         closeNotificationMethod();
@@ -60,13 +44,9 @@ const AddUserPage = () => {
         history.push('/', {from: '/add-user'});
     };
 
-    const handleLogout = () => {
-        logout();
-    };
-
     return (
       <div className={style['add-user-page-wrapper']}>
-        <PageLayout handleLogout={handleLogout}>
+        <PageLayout>
           <Formik
               initialValues={{
                   name: '',
