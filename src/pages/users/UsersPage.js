@@ -33,15 +33,6 @@ const UsersPage = () => {
         <div className={style['users-page-wrapper']}>
           <div className='header'>
             <div className='title'>Organization Users</div>
-            {/* <Search*/}
-            {/*    placeholder="Search for a user"*/}
-            {/*    onChange={handleOnSearchChange}*/}
-            {/*    value={searchText}*/}
-            {/*    style={{width: 230}}*/}
-            {/*    className='user-search'*/}
-            {/*    prefix={<SearchOutlined />}*/}
-            {/*    suffix={''}*/}
-            {/* />*/}
           </div>
 
           {

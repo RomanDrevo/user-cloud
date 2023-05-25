@@ -26,11 +26,11 @@ const PageLayout = ({children}) => {
                   Users
                 </Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<UserAddOutlined />} >
-                <Link to='/add-user'>
-                  Add User
-                </Link>
-              </Menu.Item>
+              {/* <Menu.Item key="8" icon={<UserAddOutlined />} >*/}
+              {/*  <Link to='/add-user'>*/}
+              {/*    Add User*/}
+              {/*  </Link>*/}
+              {/* </Menu.Item>*/}
             </Menu>
           </Sider>
           <Content style={{margin: '0 16px'}}>
