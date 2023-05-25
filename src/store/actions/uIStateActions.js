@@ -13,12 +13,10 @@ export const toggleIsAppStarted = () =>{
     };
 };
 
-export const closeNotification = data =>{
+export const setErrorToStore = data =>{
     return{
-        type: types.CLOSE_NOTIFICATION,
+        type: types.SET_ERROR_TO_STORE,
         payload: data
     };
 };
-
-export const toggleErrorWindowIsOpen = () => ({type: types.TOGGLE_ERROR_WINDOW_IS_OPEN});
 

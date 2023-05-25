@@ -2,7 +2,9 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {fetchUsersApi} from '../api';
 
 const initialState = {
-    users: []
+    users: [],
+    error: null,
+    loading: false
 };
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
@@ -36,9 +38,7 @@ const usersSlice = createSlice({
             .addCase(fetchUsers.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
-            })
-
-        ;
+            });
     }
 });
 
