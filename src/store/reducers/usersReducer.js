@@ -25,12 +25,6 @@ const usersReducer = createReducer(initialState, {
       ...state,
       error: payload
     };
-  },
-  [actionsTypes.UPDATE_SEARCH]: (state, { payload }) => {
-    return {
-      ...state,
-      searchText: payload
-    };
   }
 });
 

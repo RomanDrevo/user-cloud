@@ -3,10 +3,6 @@ import createReducer from './createReducer';
 
 const initialState = {
     isLoading: false,
-    isErrorWindowOpen: false,
-    isModalVisible: false,
-    isNotificationOpen: false,
-    notificationMessage: '',
     isAppStarted: false
 };
 
@@ -15,32 +11,6 @@ const UIStateReducer = createReducer(initialState, {
         return {
             ...state,
             isLoading: payload
-        };
-    },
-    [actionsTypes.TOGGLE_DELETE_USER_MODAL]: (state) => {
-        return {
-            ...state,
-            isModalVisible: !state.isModalVisible
-        };
-    },
-    [actionsTypes.OPEN_NOTIFICATION]: (state, {payload}) => {
-        return {
-            ...state,
-            isNotificationOpen: true,
-            notificationMessage: payload
-        };
-    },
-    [actionsTypes.CLOSE_NOTIFICATION]: (state) => {
-        return {
-            ...state,
-            isNotificationOpen: false,
-            notificationMessage: ''
-        };
-    },
-    [actionsTypes.TOGGLE_ERROR_WINDOW_IS_OPEN]: state => {
-        return {
-            ...state,
-            isErrorWindowOpen: !state.isErrorWindowOpen
         };
     },
     [actionsTypes.TOGGLE_IS_APP_STARTED]: state => {
