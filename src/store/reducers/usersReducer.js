@@ -3,7 +3,8 @@ import createReducer from '../reducers/createReducer';
 
 const initialState = {
   users: [],
-  error: null
+  error: null,
+  isSuccess: null
 };
 
 const usersReducer = createReducer(initialState, {
@@ -17,6 +18,12 @@ const usersReducer = createReducer(initialState, {
     return {
       ...state,
       error: payload
+    };
+  },
+  [actionsTypes.SET_IS_SUCCESS]: (state, {payload}) => {
+    return {
+      ...state,
+      isSuccess: payload
     };
   }
 });

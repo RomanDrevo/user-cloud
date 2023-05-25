@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import style from './UsersPage.module.scss';
 import UserCard from '../../components/user-card/UserCard';
 import {fetchUsers} from '../../store/actions/usersActions';
-import {getIsAppStarted, getIsLoading, getUsers} from '../../store/selectors';
+import {getIsAppStarted, getIsLoading, getIsSuccess, getUsers} from '../../store/selectors';
 import Spinner from '../../components/spinner';
 import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
@@ -12,6 +12,7 @@ import {toggleIsAppStarted} from '../../store/actions/uIStateActions';
 const UsersPage = () => {
 
     const isLoading = useSelector(getIsLoading);
+    const isSuccess = useSelector(getIsSuccess);
     const users = useSelector(getUsers);
     const isAppStarted = useSelector(getIsAppStarted);
     console.log('--->>>users: ', users);
@@ -28,6 +29,8 @@ const UsersPage = () => {
 
     }, []);
 
+    if(isLoading) return <Spinner/>;
+
     return (
       <PageLayout>
         <div className={style['users-page-wrapper']}>
@@ -36,7 +39,7 @@ const UsersPage = () => {
           </div>
 
           {
-              isLoading ? <Spinner/> :
+              !isSuccess ? <div>Error!</div> :
                   users.length ?
                     <div className='users-list'>
                       {

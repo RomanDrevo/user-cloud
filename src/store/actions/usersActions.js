@@ -16,11 +16,13 @@ export const fetchUsers =  () => async (dispatch) => {
 
   }
   catch (error){
-    dispatch(setLoading(false));
-    dispatch(setErrorToStore(error));
+      dispatch(setLoading(false));
+      dispatch(setErrorToStore(error));
+      dispatch(setIsSuccess(false));
   }
   finally {
       dispatch(setLoading(false));
+      dispatch(setIsSuccess(true));
   }
 };
 
@@ -37,3 +39,11 @@ export const setErrorToStore = data =>{
     payload: data
   };
 };
+
+export const setIsSuccess = data =>{
+    return{
+        type: types.SET_IS_SUCCESS,
+        payload: data
+    };
+};
+
