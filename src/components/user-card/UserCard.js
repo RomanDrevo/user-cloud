@@ -1,15 +1,23 @@
 import React from 'react';
 import style from './UserCard.module.scss';
 import {Divider} from 'antd';
-import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
+import {MailOutlined} from '@ant-design/icons';
 
-const UserCard = ({user, handleDeleteUser}) => { 
-    const handleOnClick = user => {
-        handleDeleteUser(user);
+import {useLazyGetUserDataQuery, useGetUserDataQuery} from '../../store/usersApi';
+
+const UserCard = ({user}) => {
+
+    const [fetchUserData, {isLoading, data, isSuccess}] = useLazyGetUserDataQuery();
+    // const {isLoading, data, isSuccess} = useGetUserDataQuery(user.id);
+
+    console.log('--->>>user details: ', data);
+
+    const handleOnClick = () => {
+        fetchUserData(user.id);
     };
 
     return (
-      <div className={style['user-card-wrapper']}>
+      <div className={style['user-card-wrapper']} onClick={handleOnClick}>
         <div className='user-card'>
           <div className='cut-1'/>
           {/* <div className='userpic-wrapper'>*/}
@@ -22,12 +30,20 @@ const UserCard = ({user, handleDeleteUser}) => {
           <div className='cut-2'/>
           <div className='user-details'>
             <div className='user-id'>ID: {user.id}</div>
-            <div className='user-birthday'>
-              Email: {user.email}
-            </div>
-            <div className='user-address'>
-              Address: {user.address.street}
-            </div>
+            {
+                data?.email &&
+                <div className='user-birthday'>
+                  Email: {data.email}
+                </div>
+            }
+
+            {
+                  data?.address &&
+                  <div className='user-address'>
+                    Address: {data.address.street}
+                  </div>
+            }
+
           </div>
           <Divider className='divider'/>
           <div className='user-email-wrapper'>
@@ -35,9 +51,6 @@ const UserCard = ({user, handleDeleteUser}) => {
               <MailOutlined/>
               <a href={`mailto:${user.email}`} className='user-email'>{user.Email}</a>
             </div>
-            <button className='delete-user' onClick={() => handleOnClick(user)}>
-              <DeleteOutlined/>
-            </button>
           </div>
         </div>
 
