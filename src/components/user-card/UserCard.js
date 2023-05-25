@@ -1,20 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from './UserCard.module.scss';
 import {Divider} from 'antd';
-import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
+import {MailOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUserDetails} from '../../store/actions/userdetailsActions';
 import {getUserDetails} from '../../store/selectors';
 
 const UserCard = ({user}) => {
-  console.log('--->>>user: ', user);
 
   const userDetails = useSelector((state)=>getUserDetails(state, user.id));
-  // const selectedId = useSelector(getSelectedId);
-
-  // console.log('--->>>userDetails: ', userDetails);
-
-  // const [userDetails, setUserDetails] = useState({});
 
   const dispatch = useDispatch();
 
@@ -22,9 +16,6 @@ const UserCard = ({user}) => {
 
     const handleOnClick = () => {
       fetchUserDetailsMethod();
-      // const userData = await fetchUserDetailsApi(user.id);
-      // console.log('--->>>userData: ', userData);
-      // setUserDetails(userData.data);
     };
 
     return (
