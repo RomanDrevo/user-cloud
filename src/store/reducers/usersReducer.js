@@ -2,32 +2,37 @@
 // import createReducer from '../reducers/createReducer';
 //
 // const initialState = {
-//     users: [],
-//     searchText: '',
-//     error: null
+//   users: [],
+//   error: null,
+//   isSuccess: null,
+//   isLoading: false,
 // };
 //
 // const usersReducer = createReducer(initialState, {
-//     [actionsTypes.SET_USERS_TO_STORE]: (state, {payload}) => {
+//   [actionsTypes.SET_USERS_TO_STORE]: (state, {payload}) => {
 //     return {
 //       ...state,
 //       users: payload
 //     };
 //   },
-//     [actionsTypes.CREATE_USER]: (state, {payload}) => {
-//     console.log('--->>>payload: ', payload);
+//   [actionsTypes.SET_ERROR_TO_STORE]: (state, {payload}) => {
 //     return {
 //       ...state,
-//       users: [...state.users, payload]
+//       error: payload
 //     };
 //   },
-//     [actionsTypes.SET_ERROR_TO_STORE]: (state, {payload}) => {
-//         return {
-//             ...state,
-//             error: payload
-//         };
-//     },
-//
+//   [actionsTypes.SET_IS_SUCCESS]: (state, {payload}) => {
+//     return {
+//       ...state,
+//       isSuccess: payload
+//     };
+//   },
+//   [actionsTypes.SET_LOADING]: (state, {payload}) => {
+//     return {
+//       ...state,
+//       isLoading: payload
+//     };
+//   },
 // });
 //
 // export default usersReducer;

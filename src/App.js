@@ -13,8 +13,8 @@ const App = () => {
         <div className="main-page-content">
           <Switch>
             <Route path='/' exact component={UsersPage}/>
-            <Route path='/add-user' exact component={AddUserPage}/>
-            <Route path='/user-details' exact component={UserDetailsPage}/>
+            {/* <Route path='/add-user' exact component={AddUserPage}/>*/}
+            {/* <Route path='/user-details' exact component={UserDetailsPage}/>*/}
           </Switch>
         </div>
       </div>
