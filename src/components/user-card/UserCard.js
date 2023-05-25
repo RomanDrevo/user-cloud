@@ -7,6 +7,12 @@ import {useLazyGetUserDataQuery, useGetUserDataQuery} from '../../store/usersApi
 
 const UserCard = ({user}) => {
 
+    // const userDetails = useSelector((state)=>getUserDetails(state, user.id));
+    //
+    // const dispatch = useDispatch();
+    //
+    // const fetchUserDetailsMethod = () => dispatch(fetchUserDetails(user.id));
+
     const [fetchUserData, {isLoading, data, isSuccess}] = useLazyGetUserDataQuery();
     // const {isLoading, data, isSuccess} = useGetUserDataQuery(user.id);
 
