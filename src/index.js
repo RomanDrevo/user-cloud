@@ -9,9 +9,11 @@ import thunk from 'redux-thunk';
 import {configureStore} from '@reduxjs/toolkit';
 import uIStateReducer from './store/reducers/uIStateReducer';
 import {usersReducer} from './store/usersSlice';
+import {usersApi} from './store/usersApi';
 
 const store = configureStore({
         reducer:{
+            [usersApi.reducerPath]: usersApi.reducer,
             uIStateReducer,
             usersReducer,
         },

@@ -9,33 +9,34 @@ import PageLayout from '../../components/page-layout/PageLayout';
 import EmptyState from '../../components/empty-state/EmptyState';
 import {toggleIsAppStarted} from '../../store/actions/uIStateActions';
 import {fetchUsers} from '../../store/usersSlice';
+import {useGetUsersQuery} from '../../store/usersApi';
 
 const UsersPage = () => {
 
-    // const {data, isLoading, isSuccess, isError, error} = useGetUsersQuery();
+    const {data, isLoading, isSuccess, isError, error} = useGetUsersQuery();
 
-    // console.log('--->>>data: ', data);
-    // console.log('--->>>isLoading: ', isLoading);
-    // console.log('--->>>isSuccess: ', isSuccess);
-    // console.log('--->>>isError: ', isError);
-    // console.log('--->>>error: ', error);
+    console.log('--->>>data: ', data);
+    console.log('--->>>isLoading: ', isLoading);
+    console.log('--->>>isSuccess: ', isSuccess);
+    console.log('--->>>isError: ', isError);
+    console.log('--->>>error: ', error);
 
-    const isLoading = useSelector(getIsLoading);
-    const users = useSelector(getUsers);
-    const isAppStarted = useSelector(getIsAppStarted);
-    console.log('--->>>users: ', users);
-    const dispatch = useDispatch();
+    // const isLoading = useSelector(getIsLoading);
+    // const users = useSelector(getUsers);
+    // const isAppStarted = useSelector(getIsAppStarted);
+    // console.log('--->>>users: ', users);
+    // const dispatch = useDispatch();
 
-    const fetchUsersMethod = () => dispatch(fetchUsers());
-    const toggleIsAppStartedMethod = () => dispatch(toggleIsAppStarted());
+    // const fetchUsersMethod = () => dispatch(fetchUsers());
+    // const toggleIsAppStartedMethod = () => dispatch(toggleIsAppStarted());
 
-    useEffect(() => {
-        toggleIsAppStartedMethod();
-        if(!isAppStarted){
-            fetchUsersMethod();
-        }
-
-    }, []);
+    // useEffect(() => {
+    //     toggleIsAppStartedMethod();
+    //     if(!isAppStarted){
+    //         fetchUsersMethod();
+    //     }
+    //
+    // }, []);
 
     return (
       <PageLayout>
@@ -53,22 +54,22 @@ const UsersPage = () => {
             {/* />*/}
           </div>
 
-          {
-              isLoading ? <Spinner/> :
-                  users.length ?
-                    <div className='users-list'>
-                      {
-                          users.map(user => (
-                            <UserCard
-                                // handleDeleteUser={handleDeleteUser}
-                                key={user.id}
-                                user={user}
-                            />
-                          ))
-                      }
-                    </div>
-                      : <EmptyState title='Oops!' description='No users found.'/>
-          }
+          {/* {*/}
+          {/*    isLoading ? <Spinner/> :*/}
+          {/*        users.length ?*/}
+          {/*          <div className='users-list'>*/}
+          {/*            {*/}
+          {/*                users.map(user => (*/}
+          {/*                  <UserCard*/}
+          {/*                      // handleDeleteUser={handleDeleteUser}*/}
+          {/*                      key={user.id}*/}
+          {/*                      user={user}*/}
+          {/*                  />*/}
+          {/*                ))*/}
+          {/*            }*/}
+          {/*          </div>*/}
+          {/*            : <EmptyState title='Oops!' description='No users found.'/>*/}
+          {/* }*/}
         </div>
       </PageLayout>
 
