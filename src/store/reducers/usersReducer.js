@@ -4,7 +4,8 @@ import createReducer from '../reducers/createReducer';
 const initialState = {
   users: [],
   error: null,
-  isSuccess: null
+  isSuccess: null,
+  isLoading: false,
 };
 
 const usersReducer = createReducer(initialState, {
@@ -25,7 +26,13 @@ const usersReducer = createReducer(initialState, {
       ...state,
       isSuccess: payload
     };
-  }
+  },
+  [actionsTypes.SET_LOADING]: (state, {payload}) => {
+    return {
+      ...state,
+      isLoading: payload
+    };
+  },
 });
 
 export default usersReducer;

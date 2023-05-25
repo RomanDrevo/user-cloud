@@ -1,19 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './UserCard.module.scss';
 import {Divider} from 'antd';
 import {MailOutlined, DeleteOutlined} from '@ant-design/icons';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchUserDetails} from '../../store/actions/userdetailsActions';
+import {getUserDetails} from '../../store/selectors';
 
-const UserCard = ({user, handleDeleteUser}) => {
+const UserCard = ({user}) => {
 
-    // Create a new JavaScript Date object based on the timestamp
-    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+  const userDetails = useSelector(getUserDetails);
+  // const selectedId = useSelector(getSelectedId);
 
-    const handleOnClick = user => {
-        handleDeleteUser(user);
+  // console.log('--->>>userDetails: ', userDetails);
+
+  const dispatch = useDispatch();
+
+  const fetchUserDetailsMethod = () => dispatch(fetchUserDetails(user.id));
+
+    const handleOnClick = () => {
+      fetchUserDetailsMethod();
     };
 
     return (
-      <div className={style['user-card-wrapper']}>
+      <div className={style['user-card-wrapper']} onClick={handleOnClick}>
         <div className='user-card'>
           <div className='cut-1'/>
           <Divider className='divider'/>
@@ -23,22 +32,23 @@ const UserCard = ({user, handleDeleteUser}) => {
           <div className='cut-2'/>
           <div className='user-details'>
             <div className='user-id'>ID: {user.id}</div>
-            <div className='user-birthday'>
-              Email: {user.email}
-            </div>
-            <div className='user-address'>
-              Address: {user.address.street}
-            </div>
+            {
+              user.id === userDetails.id && userDetails?.email &&
+              <div className='user-birthday'>
+                Email: {userDetails.email}
+              </div>
+            }
+            {/* <div className='user-address'>*/}
+            {/*  Address: {user.address.street}*/}
+            {/* </div>*/}
           </div>
+
           <Divider className='divider'/>
           <div className='user-email-wrapper'>
             <div className='flex'>
               <MailOutlined/>
               <a href={`mailto:${user.email}`} className='user-email'>{user.Email}</a>
             </div>
-            <button className='delete-user' onClick={() => handleOnClick(user)}>
-              <DeleteOutlined/>
-            </button>
           </div>
         </div>
 

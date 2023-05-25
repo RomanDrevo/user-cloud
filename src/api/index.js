@@ -13,3 +13,7 @@ export const fetchUsersApi = () => {
     return axios.get('/users');
 };
 
+export const fetchUserDetailsApi = id => {
+    return axios.get(`/users/${id}`);
+};
+

@@ -7,13 +7,13 @@ import 'antd/dist/antd.css';
 import './css/index.scss';
 import thunk from 'redux-thunk';
 import {configureStore} from '@reduxjs/toolkit';
-import uIStateReducer from './store/reducers/uIStateReducer';
 import usersReducer from './store/reducers/usersReducer';
+import userDetailsReducer from './store/reducers/userDetailsReducer';
 
 const store = configureStore({
         reducer:{
-            uIStateReducer,
             usersReducer,
+            userDetailsReducer
         },
         middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
     });

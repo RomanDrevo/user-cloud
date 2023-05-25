@@ -1,5 +1,4 @@
 import types from '../actionsTypes';
-import {setLoading} from './uIStateActions';
 import {fetchUsersApi} from '../../api';
 
 export const fetchUsers =  () => async (dispatch) => {
@@ -31,6 +30,13 @@ export const setUsersToStore = data =>{
     type: types.SET_USERS_TO_STORE,
     payload: data
   };
+};
+
+export const setLoading = data =>{
+    return{
+        type: types.SET_LOADING,
+        payload: data
+    };
 };
 
 export const setErrorToStore = data =>{
